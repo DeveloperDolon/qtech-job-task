@@ -1,1 +1,41 @@
-console.log("hello world form backend");
+import { Server } from "http";
+import app from "./app.js";
+import config from "./config/index.js";
+
+async function bootstrap() {
+  // This variable will hold our server instance
+  let server: Server;
+
+  try {
+    // Start the server
+    server = app.listen(config.port, () => {
+      console.log(
+        `🚀 File management system Server is running on http://localhost:${config.port}`
+      );
+    });
+
+    // Function to gracefully shut down the server
+    const exitHandler = () => {
+      if (server) {
+        server.close(() => {
+          console.log("Server closed gracefully.");
+          process.exit(1); // Exit with a failure code
+        });
+      } else {
+        process.exit(1);
+      }
+    };
+
+    // Handle unhandled promise rejections
+    process.on("unhandledRejection", (error) => {
+      console.log(
+        "Unhandled Rejection is detected, we are closing our server..."
+      );
+    });
+  } catch (error) {
+    console.error("Error during server startup:", error);
+    process.exit(1);
+  }
+}
+
+bootstrap();
