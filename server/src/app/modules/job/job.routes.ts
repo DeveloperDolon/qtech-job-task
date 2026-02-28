@@ -5,8 +5,8 @@ import authGuard from '#app/middlewares/authGuard.js';
 
 const router = express.Router();
 
-router.post('/', authGuard(['admin']), uploadMiddleware.single('file'), JobController.createJob);
+router.post('/', authGuard(), uploadMiddleware.single('file'), JobController.createJob);
 
-router.delete('/:id', authGuard(['admin']), JobController.deleteJob);
+router.delete('/:id', authGuard(), JobController.deleteJob);
 
 export const JobRoutes = router;

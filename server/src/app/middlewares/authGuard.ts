@@ -7,7 +7,7 @@ import config from "../../config/index.js";
 import ApiError from "../errors/ApiError.js";
 import { jwtHelpers } from "../helpers/jwtHelper.js";
 // ...roles: string[]
-const authGuard = (roles: string[] = []) => {
+const authGuard = () => {
   return async (req: Request & { user?: any }, res: Response, next: NextFunction) => {
     try {
       const token = req.headers.authorization;
@@ -20,9 +20,9 @@ const authGuard = (roles: string[] = []) => {
 
       req.user = verifiedUser;
 
-      if (roles.length && !roles.includes(verifiedUser.role)) {
-        throw new ApiError(httpStatus.FORBIDDEN, "Forbidden!");
-      }
+      // if (roles.length && !roles.includes(verifiedUser.role)) {
+      //   throw new ApiError(httpStatus.FORBIDDEN, "Forbidden!");
+      // }
       next();
     } catch (err) {
       next(err);
