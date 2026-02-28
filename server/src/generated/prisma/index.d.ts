@@ -2143,13 +2143,13 @@ export namespace Prisma {
   }
 
   export type JobAvgAggregateOutputType = {
-    salary: number | null
     vacancy: number | null
+    salary: number | null
   }
 
   export type JobSumAggregateOutputType = {
-    salary: number | null
     vacancy: number | null
+    salary: number | null
   }
 
   export type JobMinAggregateOutputType = {
@@ -2160,12 +2160,12 @@ export namespace Prisma {
     location: string | null
     logo: string | null
     jobType: $Enums.JobType | null
-    category: $Enums.JobCategory | null
-    salary: number | null
     vacancy: number | null
     workingTime: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    salary: number | null
+    category: $Enums.JobCategory | null
   }
 
   export type JobMaxAggregateOutputType = {
@@ -2176,12 +2176,12 @@ export namespace Prisma {
     location: string | null
     logo: string | null
     jobType: $Enums.JobType | null
-    category: $Enums.JobCategory | null
-    salary: number | null
     vacancy: number | null
     workingTime: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    salary: number | null
+    category: $Enums.JobCategory | null
   }
 
   export type JobCountAggregateOutputType = {
@@ -2193,24 +2193,24 @@ export namespace Prisma {
     logo: number
     jobType: number
     tags: number
-    category: number
-    salary: number
     vacancy: number
     workingTime: number
     createdAt: number
     updatedAt: number
+    salary: number
+    category: number
     _all: number
   }
 
 
   export type JobAvgAggregateInputType = {
-    salary?: true
     vacancy?: true
+    salary?: true
   }
 
   export type JobSumAggregateInputType = {
-    salary?: true
     vacancy?: true
+    salary?: true
   }
 
   export type JobMinAggregateInputType = {
@@ -2221,12 +2221,12 @@ export namespace Prisma {
     location?: true
     logo?: true
     jobType?: true
-    category?: true
-    salary?: true
     vacancy?: true
     workingTime?: true
     createdAt?: true
     updatedAt?: true
+    salary?: true
+    category?: true
   }
 
   export type JobMaxAggregateInputType = {
@@ -2237,12 +2237,12 @@ export namespace Prisma {
     location?: true
     logo?: true
     jobType?: true
-    category?: true
-    salary?: true
     vacancy?: true
     workingTime?: true
     createdAt?: true
     updatedAt?: true
+    salary?: true
+    category?: true
   }
 
   export type JobCountAggregateInputType = {
@@ -2254,12 +2254,12 @@ export namespace Prisma {
     logo?: true
     jobType?: true
     tags?: true
-    category?: true
-    salary?: true
     vacancy?: true
     workingTime?: true
     createdAt?: true
     updatedAt?: true
+    salary?: true
+    category?: true
     _all?: true
   }
 
@@ -2358,12 +2358,12 @@ export namespace Prisma {
     logo: string
     jobType: $Enums.JobType
     tags: string[]
-    category: $Enums.JobCategory
-    salary: number
     vacancy: number
     workingTime: string
     createdAt: Date
     updatedAt: Date
+    salary: number
+    category: $Enums.JobCategory
     _count: JobCountAggregateOutputType | null
     _avg: JobAvgAggregateOutputType | null
     _sum: JobSumAggregateOutputType | null
@@ -2394,12 +2394,12 @@ export namespace Prisma {
     logo?: boolean
     jobType?: boolean
     tags?: boolean
-    category?: boolean
-    salary?: boolean
     vacancy?: boolean
     workingTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    salary?: boolean
+    category?: boolean
     applications?: boolean | Job$applicationsArgs<ExtArgs>
     _count?: boolean | JobCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["job"]>
@@ -2413,12 +2413,12 @@ export namespace Prisma {
     logo?: boolean
     jobType?: boolean
     tags?: boolean
-    category?: boolean
-    salary?: boolean
     vacancy?: boolean
     workingTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    salary?: boolean
+    category?: boolean
   }, ExtArgs["result"]["job"]>
 
   export type JobSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2430,12 +2430,12 @@ export namespace Prisma {
     logo?: boolean
     jobType?: boolean
     tags?: boolean
-    category?: boolean
-    salary?: boolean
     vacancy?: boolean
     workingTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    salary?: boolean
+    category?: boolean
   }, ExtArgs["result"]["job"]>
 
   export type JobSelectScalar = {
@@ -2447,15 +2447,15 @@ export namespace Prisma {
     logo?: boolean
     jobType?: boolean
     tags?: boolean
-    category?: boolean
-    salary?: boolean
     vacancy?: boolean
     workingTime?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    salary?: boolean
+    category?: boolean
   }
 
-  export type JobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "company" | "location" | "logo" | "jobType" | "tags" | "category" | "salary" | "vacancy" | "workingTime" | "createdAt" | "updatedAt", ExtArgs["result"]["job"]>
+  export type JobOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "company" | "location" | "logo" | "jobType" | "tags" | "vacancy" | "workingTime" | "createdAt" | "updatedAt" | "salary" | "category", ExtArgs["result"]["job"]>
   export type JobInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     applications?: boolean | Job$applicationsArgs<ExtArgs>
     _count?: boolean | JobCountOutputTypeDefaultArgs<ExtArgs>
@@ -2477,12 +2477,12 @@ export namespace Prisma {
       logo: string
       jobType: $Enums.JobType
       tags: string[]
-      category: $Enums.JobCategory
-      salary: number
       vacancy: number
       workingTime: string
       createdAt: Date
       updatedAt: Date
+      salary: number
+      category: $Enums.JobCategory
     }, ExtArgs["result"]["job"]>
     composites: {}
   }
@@ -2915,12 +2915,12 @@ export namespace Prisma {
     readonly logo: FieldRef<"Job", 'String'>
     readonly jobType: FieldRef<"Job", 'JobType'>
     readonly tags: FieldRef<"Job", 'String[]'>
-    readonly category: FieldRef<"Job", 'JobCategory'>
-    readonly salary: FieldRef<"Job", 'Float'>
     readonly vacancy: FieldRef<"Job", 'Int'>
     readonly workingTime: FieldRef<"Job", 'String'>
     readonly createdAt: FieldRef<"Job", 'DateTime'>
     readonly updatedAt: FieldRef<"Job", 'DateTime'>
+    readonly salary: FieldRef<"Job", 'Float'>
+    readonly category: FieldRef<"Job", 'JobCategory'>
   }
     
 
@@ -3364,37 +3364,37 @@ export namespace Prisma {
   export type ApplicationMinAggregateOutputType = {
     id: string | null
     jobId: string | null
-    applicantName: string | null
-    applicantEmail: string | null
-    resumeLink: string | null
-    coverLetter: string | null
-    status: $Enums.ApplicationStatus | null
     createdAt: Date | null
     updatedAt: Date | null
+    applicantEmail: string | null
+    applicantName: string | null
+    coverLetter: string | null
+    resumeLink: string | null
+    status: $Enums.ApplicationStatus | null
   }
 
   export type ApplicationMaxAggregateOutputType = {
     id: string | null
     jobId: string | null
-    applicantName: string | null
-    applicantEmail: string | null
-    resumeLink: string | null
-    coverLetter: string | null
-    status: $Enums.ApplicationStatus | null
     createdAt: Date | null
     updatedAt: Date | null
+    applicantEmail: string | null
+    applicantName: string | null
+    coverLetter: string | null
+    resumeLink: string | null
+    status: $Enums.ApplicationStatus | null
   }
 
   export type ApplicationCountAggregateOutputType = {
     id: number
     jobId: number
-    applicantName: number
-    applicantEmail: number
-    resumeLink: number
-    coverLetter: number
-    status: number
     createdAt: number
     updatedAt: number
+    applicantEmail: number
+    applicantName: number
+    coverLetter: number
+    resumeLink: number
+    status: number
     _all: number
   }
 
@@ -3402,37 +3402,37 @@ export namespace Prisma {
   export type ApplicationMinAggregateInputType = {
     id?: true
     jobId?: true
-    applicantName?: true
-    applicantEmail?: true
-    resumeLink?: true
-    coverLetter?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
+    applicantEmail?: true
+    applicantName?: true
+    coverLetter?: true
+    resumeLink?: true
+    status?: true
   }
 
   export type ApplicationMaxAggregateInputType = {
     id?: true
     jobId?: true
-    applicantName?: true
-    applicantEmail?: true
-    resumeLink?: true
-    coverLetter?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
+    applicantEmail?: true
+    applicantName?: true
+    coverLetter?: true
+    resumeLink?: true
+    status?: true
   }
 
   export type ApplicationCountAggregateInputType = {
     id?: true
     jobId?: true
-    applicantName?: true
-    applicantEmail?: true
-    resumeLink?: true
-    coverLetter?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
+    applicantEmail?: true
+    applicantName?: true
+    coverLetter?: true
+    resumeLink?: true
+    status?: true
     _all?: true
   }
 
@@ -3511,13 +3511,13 @@ export namespace Prisma {
   export type ApplicationGroupByOutputType = {
     id: string
     jobId: string
-    applicantName: string
-    applicantEmail: string
-    resumeLink: string
-    coverLetter: string | null
-    status: $Enums.ApplicationStatus
     createdAt: Date
     updatedAt: Date
+    applicantEmail: string
+    applicantName: string
+    coverLetter: string | null
+    resumeLink: string
+    status: $Enums.ApplicationStatus
     _count: ApplicationCountAggregateOutputType | null
     _min: ApplicationMinAggregateOutputType | null
     _max: ApplicationMaxAggregateOutputType | null
@@ -3540,55 +3540,55 @@ export namespace Prisma {
   export type ApplicationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     jobId?: boolean
-    applicantName?: boolean
-    applicantEmail?: boolean
-    resumeLink?: boolean
-    coverLetter?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    applicantEmail?: boolean
+    applicantName?: boolean
+    coverLetter?: boolean
+    resumeLink?: boolean
+    status?: boolean
     job?: boolean | JobDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["application"]>
 
   export type ApplicationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     jobId?: boolean
-    applicantName?: boolean
-    applicantEmail?: boolean
-    resumeLink?: boolean
-    coverLetter?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    applicantEmail?: boolean
+    applicantName?: boolean
+    coverLetter?: boolean
+    resumeLink?: boolean
+    status?: boolean
     job?: boolean | JobDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["application"]>
 
   export type ApplicationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     jobId?: boolean
-    applicantName?: boolean
-    applicantEmail?: boolean
-    resumeLink?: boolean
-    coverLetter?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    applicantEmail?: boolean
+    applicantName?: boolean
+    coverLetter?: boolean
+    resumeLink?: boolean
+    status?: boolean
     job?: boolean | JobDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["application"]>
 
   export type ApplicationSelectScalar = {
     id?: boolean
     jobId?: boolean
-    applicantName?: boolean
-    applicantEmail?: boolean
-    resumeLink?: boolean
-    coverLetter?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    applicantEmail?: boolean
+    applicantName?: boolean
+    coverLetter?: boolean
+    resumeLink?: boolean
+    status?: boolean
   }
 
-  export type ApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "applicantName" | "applicantEmail" | "resumeLink" | "coverLetter" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["application"]>
+  export type ApplicationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "jobId" | "createdAt" | "updatedAt" | "applicantEmail" | "applicantName" | "coverLetter" | "resumeLink" | "status", ExtArgs["result"]["application"]>
   export type ApplicationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     job?: boolean | JobDefaultArgs<ExtArgs>
   }
@@ -3607,13 +3607,13 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       jobId: string
-      applicantName: string
-      applicantEmail: string
-      resumeLink: string
-      coverLetter: string | null
-      status: $Enums.ApplicationStatus
       createdAt: Date
       updatedAt: Date
+      applicantEmail: string
+      applicantName: string
+      coverLetter: string | null
+      resumeLink: string
+      status: $Enums.ApplicationStatus
     }, ExtArgs["result"]["application"]>
     composites: {}
   }
@@ -4040,13 +4040,13 @@ export namespace Prisma {
   interface ApplicationFieldRefs {
     readonly id: FieldRef<"Application", 'String'>
     readonly jobId: FieldRef<"Application", 'String'>
-    readonly applicantName: FieldRef<"Application", 'String'>
-    readonly applicantEmail: FieldRef<"Application", 'String'>
-    readonly resumeLink: FieldRef<"Application", 'String'>
-    readonly coverLetter: FieldRef<"Application", 'String'>
-    readonly status: FieldRef<"Application", 'ApplicationStatus'>
     readonly createdAt: FieldRef<"Application", 'DateTime'>
     readonly updatedAt: FieldRef<"Application", 'DateTime'>
+    readonly applicantEmail: FieldRef<"Application", 'String'>
+    readonly applicantName: FieldRef<"Application", 'String'>
+    readonly coverLetter: FieldRef<"Application", 'String'>
+    readonly resumeLink: FieldRef<"Application", 'String'>
+    readonly status: FieldRef<"Application", 'ApplicationStatus'>
   }
     
 
@@ -4496,12 +4496,12 @@ export namespace Prisma {
     logo: 'logo',
     jobType: 'jobType',
     tags: 'tags',
-    category: 'category',
-    salary: 'salary',
     vacancy: 'vacancy',
     workingTime: 'workingTime',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    salary: 'salary',
+    category: 'category'
   };
 
   export type JobScalarFieldEnum = (typeof JobScalarFieldEnum)[keyof typeof JobScalarFieldEnum]
@@ -4510,13 +4510,13 @@ export namespace Prisma {
   export const ApplicationScalarFieldEnum: {
     id: 'id',
     jobId: 'jobId',
-    applicantName: 'applicantName',
-    applicantEmail: 'applicantEmail',
-    resumeLink: 'resumeLink',
-    coverLetter: 'coverLetter',
-    status: 'status',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    applicantEmail: 'applicantEmail',
+    applicantName: 'applicantName',
+    coverLetter: 'coverLetter',
+    resumeLink: 'resumeLink',
+    status: 'status'
   };
 
   export type ApplicationScalarFieldEnum = (typeof ApplicationScalarFieldEnum)[keyof typeof ApplicationScalarFieldEnum]
@@ -4594,16 +4594,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'JobCategory'
+   * Reference to a field of type 'Int'
    */
-  export type EnumJobCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobCategory'>
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
   /**
-   * Reference to a field of type 'JobCategory[]'
+   * Reference to a field of type 'Int[]'
    */
-  export type ListEnumJobCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobCategory[]'>
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -4622,16 +4622,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'JobCategory'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type EnumJobCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobCategory'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'JobCategory[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListEnumJobCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobCategory[]'>
     
 
 
@@ -4721,12 +4721,12 @@ export namespace Prisma {
     logo?: StringFilter<"Job"> | string
     jobType?: EnumJobTypeFilter<"Job"> | $Enums.JobType
     tags?: StringNullableListFilter<"Job">
-    category?: EnumJobCategoryFilter<"Job"> | $Enums.JobCategory
-    salary?: FloatFilter<"Job"> | number
     vacancy?: IntFilter<"Job"> | number
     workingTime?: StringFilter<"Job"> | string
     createdAt?: DateTimeFilter<"Job"> | Date | string
     updatedAt?: DateTimeFilter<"Job"> | Date | string
+    salary?: FloatFilter<"Job"> | number
+    category?: EnumJobCategoryFilter<"Job"> | $Enums.JobCategory
     applications?: ApplicationListRelationFilter
   }
 
@@ -4739,12 +4739,12 @@ export namespace Prisma {
     logo?: SortOrder
     jobType?: SortOrder
     tags?: SortOrder
-    category?: SortOrder
-    salary?: SortOrder
     vacancy?: SortOrder
     workingTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    salary?: SortOrder
+    category?: SortOrder
     applications?: ApplicationOrderByRelationAggregateInput
   }
 
@@ -4760,12 +4760,12 @@ export namespace Prisma {
     logo?: StringFilter<"Job"> | string
     jobType?: EnumJobTypeFilter<"Job"> | $Enums.JobType
     tags?: StringNullableListFilter<"Job">
-    category?: EnumJobCategoryFilter<"Job"> | $Enums.JobCategory
-    salary?: FloatFilter<"Job"> | number
     vacancy?: IntFilter<"Job"> | number
     workingTime?: StringFilter<"Job"> | string
     createdAt?: DateTimeFilter<"Job"> | Date | string
     updatedAt?: DateTimeFilter<"Job"> | Date | string
+    salary?: FloatFilter<"Job"> | number
+    category?: EnumJobCategoryFilter<"Job"> | $Enums.JobCategory
     applications?: ApplicationListRelationFilter
   }, "id">
 
@@ -4778,12 +4778,12 @@ export namespace Prisma {
     logo?: SortOrder
     jobType?: SortOrder
     tags?: SortOrder
-    category?: SortOrder
-    salary?: SortOrder
     vacancy?: SortOrder
     workingTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    salary?: SortOrder
+    category?: SortOrder
     _count?: JobCountOrderByAggregateInput
     _avg?: JobAvgOrderByAggregateInput
     _max?: JobMaxOrderByAggregateInput
@@ -4803,12 +4803,12 @@ export namespace Prisma {
     logo?: StringWithAggregatesFilter<"Job"> | string
     jobType?: EnumJobTypeWithAggregatesFilter<"Job"> | $Enums.JobType
     tags?: StringNullableListFilter<"Job">
-    category?: EnumJobCategoryWithAggregatesFilter<"Job"> | $Enums.JobCategory
-    salary?: FloatWithAggregatesFilter<"Job"> | number
     vacancy?: IntWithAggregatesFilter<"Job"> | number
     workingTime?: StringWithAggregatesFilter<"Job"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Job"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Job"> | Date | string
+    salary?: FloatWithAggregatesFilter<"Job"> | number
+    category?: EnumJobCategoryWithAggregatesFilter<"Job"> | $Enums.JobCategory
   }
 
   export type ApplicationWhereInput = {
@@ -4817,26 +4817,26 @@ export namespace Prisma {
     NOT?: ApplicationWhereInput | ApplicationWhereInput[]
     id?: StringFilter<"Application"> | string
     jobId?: StringFilter<"Application"> | string
-    applicantName?: StringFilter<"Application"> | string
-    applicantEmail?: StringFilter<"Application"> | string
-    resumeLink?: StringFilter<"Application"> | string
-    coverLetter?: StringNullableFilter<"Application"> | string | null
-    status?: EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
     createdAt?: DateTimeFilter<"Application"> | Date | string
     updatedAt?: DateTimeFilter<"Application"> | Date | string
+    applicantEmail?: StringFilter<"Application"> | string
+    applicantName?: StringFilter<"Application"> | string
+    coverLetter?: StringNullableFilter<"Application"> | string | null
+    resumeLink?: StringFilter<"Application"> | string
+    status?: EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
     job?: XOR<JobScalarRelationFilter, JobWhereInput>
   }
 
   export type ApplicationOrderByWithRelationInput = {
     id?: SortOrder
     jobId?: SortOrder
-    applicantName?: SortOrder
-    applicantEmail?: SortOrder
-    resumeLink?: SortOrder
-    coverLetter?: SortOrderInput | SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    applicantEmail?: SortOrder
+    applicantName?: SortOrder
+    coverLetter?: SortOrderInput | SortOrder
+    resumeLink?: SortOrder
+    status?: SortOrder
     job?: JobOrderByWithRelationInput
   }
 
@@ -4846,26 +4846,26 @@ export namespace Prisma {
     OR?: ApplicationWhereInput[]
     NOT?: ApplicationWhereInput | ApplicationWhereInput[]
     jobId?: StringFilter<"Application"> | string
-    applicantName?: StringFilter<"Application"> | string
-    applicantEmail?: StringFilter<"Application"> | string
-    resumeLink?: StringFilter<"Application"> | string
-    coverLetter?: StringNullableFilter<"Application"> | string | null
-    status?: EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
     createdAt?: DateTimeFilter<"Application"> | Date | string
     updatedAt?: DateTimeFilter<"Application"> | Date | string
+    applicantEmail?: StringFilter<"Application"> | string
+    applicantName?: StringFilter<"Application"> | string
+    coverLetter?: StringNullableFilter<"Application"> | string | null
+    resumeLink?: StringFilter<"Application"> | string
+    status?: EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
     job?: XOR<JobScalarRelationFilter, JobWhereInput>
   }, "id">
 
   export type ApplicationOrderByWithAggregationInput = {
     id?: SortOrder
     jobId?: SortOrder
-    applicantName?: SortOrder
-    applicantEmail?: SortOrder
-    resumeLink?: SortOrder
-    coverLetter?: SortOrderInput | SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    applicantEmail?: SortOrder
+    applicantName?: SortOrder
+    coverLetter?: SortOrderInput | SortOrder
+    resumeLink?: SortOrder
+    status?: SortOrder
     _count?: ApplicationCountOrderByAggregateInput
     _max?: ApplicationMaxOrderByAggregateInput
     _min?: ApplicationMinOrderByAggregateInput
@@ -4877,13 +4877,13 @@ export namespace Prisma {
     NOT?: ApplicationScalarWhereWithAggregatesInput | ApplicationScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Application"> | string
     jobId?: StringWithAggregatesFilter<"Application"> | string
-    applicantName?: StringWithAggregatesFilter<"Application"> | string
-    applicantEmail?: StringWithAggregatesFilter<"Application"> | string
-    resumeLink?: StringWithAggregatesFilter<"Application"> | string
-    coverLetter?: StringNullableWithAggregatesFilter<"Application"> | string | null
-    status?: EnumApplicationStatusWithAggregatesFilter<"Application"> | $Enums.ApplicationStatus
     createdAt?: DateTimeWithAggregatesFilter<"Application"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Application"> | Date | string
+    applicantEmail?: StringWithAggregatesFilter<"Application"> | string
+    applicantName?: StringWithAggregatesFilter<"Application"> | string
+    coverLetter?: StringNullableWithAggregatesFilter<"Application"> | string | null
+    resumeLink?: StringWithAggregatesFilter<"Application"> | string
+    status?: EnumApplicationStatusWithAggregatesFilter<"Application"> | $Enums.ApplicationStatus
   }
 
   export type UserCreateInput = {
@@ -4958,12 +4958,12 @@ export namespace Prisma {
     logo: string
     jobType: $Enums.JobType
     tags?: JobCreatetagsInput | string[]
-    category: $Enums.JobCategory
-    salary: number
     vacancy: number
     workingTime: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    salary: number
+    category: $Enums.JobCategory
     applications?: ApplicationCreateNestedManyWithoutJobInput
   }
 
@@ -4976,12 +4976,12 @@ export namespace Prisma {
     logo: string
     jobType: $Enums.JobType
     tags?: JobCreatetagsInput | string[]
-    category: $Enums.JobCategory
-    salary: number
     vacancy: number
     workingTime: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    salary: number
+    category: $Enums.JobCategory
     applications?: ApplicationUncheckedCreateNestedManyWithoutJobInput
   }
 
@@ -4994,12 +4994,12 @@ export namespace Prisma {
     logo?: StringFieldUpdateOperationsInput | string
     jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
     tags?: JobUpdatetagsInput | string[]
-    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
-    salary?: FloatFieldUpdateOperationsInput | number
     vacancy?: IntFieldUpdateOperationsInput | number
     workingTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salary?: FloatFieldUpdateOperationsInput | number
+    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
     applications?: ApplicationUpdateManyWithoutJobNestedInput
   }
 
@@ -5012,12 +5012,12 @@ export namespace Prisma {
     logo?: StringFieldUpdateOperationsInput | string
     jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
     tags?: JobUpdatetagsInput | string[]
-    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
-    salary?: FloatFieldUpdateOperationsInput | number
     vacancy?: IntFieldUpdateOperationsInput | number
     workingTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salary?: FloatFieldUpdateOperationsInput | number
+    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
     applications?: ApplicationUncheckedUpdateManyWithoutJobNestedInput
   }
 
@@ -5030,12 +5030,12 @@ export namespace Prisma {
     logo: string
     jobType: $Enums.JobType
     tags?: JobCreatetagsInput | string[]
-    category: $Enums.JobCategory
-    salary: number
     vacancy: number
     workingTime: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    salary: number
+    category: $Enums.JobCategory
   }
 
   export type JobUpdateManyMutationInput = {
@@ -5047,12 +5047,12 @@ export namespace Prisma {
     logo?: StringFieldUpdateOperationsInput | string
     jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
     tags?: JobUpdatetagsInput | string[]
-    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
-    salary?: FloatFieldUpdateOperationsInput | number
     vacancy?: IntFieldUpdateOperationsInput | number
     workingTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salary?: FloatFieldUpdateOperationsInput | number
+    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
   }
 
   export type JobUncheckedUpdateManyInput = {
@@ -5064,95 +5064,95 @@ export namespace Prisma {
     logo?: StringFieldUpdateOperationsInput | string
     jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
     tags?: JobUpdatetagsInput | string[]
-    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
-    salary?: FloatFieldUpdateOperationsInput | number
     vacancy?: IntFieldUpdateOperationsInput | number
     workingTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salary?: FloatFieldUpdateOperationsInput | number
+    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
   }
 
   export type ApplicationCreateInput = {
     id?: string
-    applicantName: string
-    applicantEmail: string
-    resumeLink: string
-    coverLetter?: string | null
-    status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    applicantEmail: string
+    applicantName: string
+    coverLetter?: string | null
+    resumeLink: string
+    status?: $Enums.ApplicationStatus
     job: JobCreateNestedOneWithoutApplicationsInput
   }
 
   export type ApplicationUncheckedCreateInput = {
     id?: string
     jobId: string
-    applicantName: string
-    applicantEmail: string
-    resumeLink: string
-    coverLetter?: string | null
-    status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    applicantEmail: string
+    applicantName: string
+    coverLetter?: string | null
+    resumeLink: string
+    status?: $Enums.ApplicationStatus
   }
 
   export type ApplicationUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    applicantName?: StringFieldUpdateOperationsInput | string
-    applicantEmail?: StringFieldUpdateOperationsInput | string
-    resumeLink?: StringFieldUpdateOperationsInput | string
-    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicantEmail?: StringFieldUpdateOperationsInput | string
+    applicantName?: StringFieldUpdateOperationsInput | string
+    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
+    resumeLink?: StringFieldUpdateOperationsInput | string
+    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     job?: JobUpdateOneRequiredWithoutApplicationsNestedInput
   }
 
   export type ApplicationUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     jobId?: StringFieldUpdateOperationsInput | string
-    applicantName?: StringFieldUpdateOperationsInput | string
-    applicantEmail?: StringFieldUpdateOperationsInput | string
-    resumeLink?: StringFieldUpdateOperationsInput | string
-    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicantEmail?: StringFieldUpdateOperationsInput | string
+    applicantName?: StringFieldUpdateOperationsInput | string
+    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
+    resumeLink?: StringFieldUpdateOperationsInput | string
+    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   }
 
   export type ApplicationCreateManyInput = {
     id?: string
     jobId: string
-    applicantName: string
-    applicantEmail: string
-    resumeLink: string
-    coverLetter?: string | null
-    status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    applicantEmail: string
+    applicantName: string
+    coverLetter?: string | null
+    resumeLink: string
+    status?: $Enums.ApplicationStatus
   }
 
   export type ApplicationUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    applicantName?: StringFieldUpdateOperationsInput | string
-    applicantEmail?: StringFieldUpdateOperationsInput | string
-    resumeLink?: StringFieldUpdateOperationsInput | string
-    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicantEmail?: StringFieldUpdateOperationsInput | string
+    applicantName?: StringFieldUpdateOperationsInput | string
+    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
+    resumeLink?: StringFieldUpdateOperationsInput | string
+    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   }
 
   export type ApplicationUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     jobId?: StringFieldUpdateOperationsInput | string
-    applicantName?: StringFieldUpdateOperationsInput | string
-    applicantEmail?: StringFieldUpdateOperationsInput | string
-    resumeLink?: StringFieldUpdateOperationsInput | string
-    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicantEmail?: StringFieldUpdateOperationsInput | string
+    applicantName?: StringFieldUpdateOperationsInput | string
+    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
+    resumeLink?: StringFieldUpdateOperationsInput | string
+    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -5293,11 +5293,15 @@ export namespace Prisma {
     isEmpty?: boolean
   }
 
-  export type EnumJobCategoryFilter<$PrismaModel = never> = {
-    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumJobCategoryFilter<$PrismaModel> | $Enums.JobCategory
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -5311,15 +5315,11 @@ export namespace Prisma {
     not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
+  export type EnumJobCategoryFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobCategoryFilter<$PrismaModel> | $Enums.JobCategory
   }
 
   export type ApplicationListRelationFilter = {
@@ -5341,17 +5341,17 @@ export namespace Prisma {
     logo?: SortOrder
     jobType?: SortOrder
     tags?: SortOrder
-    category?: SortOrder
-    salary?: SortOrder
     vacancy?: SortOrder
     workingTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    salary?: SortOrder
+    category?: SortOrder
   }
 
   export type JobAvgOrderByAggregateInput = {
-    salary?: SortOrder
     vacancy?: SortOrder
+    salary?: SortOrder
   }
 
   export type JobMaxOrderByAggregateInput = {
@@ -5362,12 +5362,12 @@ export namespace Prisma {
     location?: SortOrder
     logo?: SortOrder
     jobType?: SortOrder
-    category?: SortOrder
-    salary?: SortOrder
     vacancy?: SortOrder
     workingTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    salary?: SortOrder
+    category?: SortOrder
   }
 
   export type JobMinOrderByAggregateInput = {
@@ -5378,17 +5378,17 @@ export namespace Prisma {
     location?: SortOrder
     logo?: SortOrder
     jobType?: SortOrder
-    category?: SortOrder
-    salary?: SortOrder
     vacancy?: SortOrder
     workingTime?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    salary?: SortOrder
+    category?: SortOrder
   }
 
   export type JobSumOrderByAggregateInput = {
-    salary?: SortOrder
     vacancy?: SortOrder
+    salary?: SortOrder
   }
 
   export type EnumJobTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5399,32 +5399,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumJobTypeFilter<$PrismaModel>
     _max?: NestedEnumJobTypeFilter<$PrismaModel>
-  }
-
-  export type EnumJobCategoryWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumJobCategoryWithAggregatesFilter<$PrismaModel> | $Enums.JobCategory
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumJobCategoryFilter<$PrismaModel>
-    _max?: NestedEnumJobCategoryFilter<$PrismaModel>
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -5443,6 +5417,32 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumJobCategoryWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobCategoryWithAggregatesFilter<$PrismaModel> | $Enums.JobCategory
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJobCategoryFilter<$PrismaModel>
+    _max?: NestedEnumJobCategoryFilter<$PrismaModel>
+  }
+
   export type EnumApplicationStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.ApplicationStatus | EnumApplicationStatusFieldRefInput<$PrismaModel>
     in?: $Enums.ApplicationStatus[] | ListEnumApplicationStatusFieldRefInput<$PrismaModel>
@@ -5458,37 +5458,37 @@ export namespace Prisma {
   export type ApplicationCountOrderByAggregateInput = {
     id?: SortOrder
     jobId?: SortOrder
-    applicantName?: SortOrder
-    applicantEmail?: SortOrder
-    resumeLink?: SortOrder
-    coverLetter?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    applicantEmail?: SortOrder
+    applicantName?: SortOrder
+    coverLetter?: SortOrder
+    resumeLink?: SortOrder
+    status?: SortOrder
   }
 
   export type ApplicationMaxOrderByAggregateInput = {
     id?: SortOrder
     jobId?: SortOrder
-    applicantName?: SortOrder
-    applicantEmail?: SortOrder
-    resumeLink?: SortOrder
-    coverLetter?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    applicantEmail?: SortOrder
+    applicantName?: SortOrder
+    coverLetter?: SortOrder
+    resumeLink?: SortOrder
+    status?: SortOrder
   }
 
   export type ApplicationMinOrderByAggregateInput = {
     id?: SortOrder
     jobId?: SortOrder
-    applicantName?: SortOrder
-    applicantEmail?: SortOrder
-    resumeLink?: SortOrder
-    coverLetter?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    applicantEmail?: SortOrder
+    applicantName?: SortOrder
+    coverLetter?: SortOrder
+    resumeLink?: SortOrder
+    status?: SortOrder
   }
 
   export type EnumApplicationStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -5540,8 +5540,12 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type EnumJobCategoryFieldUpdateOperationsInput = {
-    set?: $Enums.JobCategory
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -5552,12 +5556,8 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type EnumJobCategoryFieldUpdateOperationsInput = {
+    set?: $Enums.JobCategory
   }
 
   export type ApplicationUpdateManyWithoutJobNestedInput = {
@@ -5722,13 +5722,6 @@ export namespace Prisma {
     not?: NestedEnumJobTypeFilter<$PrismaModel> | $Enums.JobType
   }
 
-  export type NestedEnumJobCategoryFilter<$PrismaModel = never> = {
-    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumJobCategoryFilter<$PrismaModel> | $Enums.JobCategory
-  }
-
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -5738,6 +5731,13 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumJobCategoryFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobCategoryFilter<$PrismaModel> | $Enums.JobCategory
   }
 
   export type NestedEnumJobTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -5750,14 +5750,20 @@ export namespace Prisma {
     _max?: NestedEnumJobTypeFilter<$PrismaModel>
   }
 
-  export type NestedEnumJobCategoryWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
-    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
-    not?: NestedEnumJobCategoryWithAggregatesFilter<$PrismaModel> | $Enums.JobCategory
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumJobCategoryFilter<$PrismaModel>
-    _max?: NestedEnumJobCategoryFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -5776,20 +5782,14 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+  export type NestedEnumJobCategoryWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobCategory | EnumJobCategoryFieldRefInput<$PrismaModel>
+    in?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobCategory[] | ListEnumJobCategoryFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobCategoryWithAggregatesFilter<$PrismaModel> | $Enums.JobCategory
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJobCategoryFilter<$PrismaModel>
+    _max?: NestedEnumJobCategoryFilter<$PrismaModel>
   }
 
   export type NestedEnumApplicationStatusFilter<$PrismaModel = never> = {
@@ -5811,24 +5811,24 @@ export namespace Prisma {
 
   export type ApplicationCreateWithoutJobInput = {
     id?: string
-    applicantName: string
-    applicantEmail: string
-    resumeLink: string
-    coverLetter?: string | null
-    status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    applicantEmail: string
+    applicantName: string
+    coverLetter?: string | null
+    resumeLink: string
+    status?: $Enums.ApplicationStatus
   }
 
   export type ApplicationUncheckedCreateWithoutJobInput = {
     id?: string
-    applicantName: string
-    applicantEmail: string
-    resumeLink: string
-    coverLetter?: string | null
-    status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    applicantEmail: string
+    applicantName: string
+    coverLetter?: string | null
+    resumeLink: string
+    status?: $Enums.ApplicationStatus
   }
 
   export type ApplicationCreateOrConnectWithoutJobInput = {
@@ -5863,13 +5863,13 @@ export namespace Prisma {
     NOT?: ApplicationScalarWhereInput | ApplicationScalarWhereInput[]
     id?: StringFilter<"Application"> | string
     jobId?: StringFilter<"Application"> | string
-    applicantName?: StringFilter<"Application"> | string
-    applicantEmail?: StringFilter<"Application"> | string
-    resumeLink?: StringFilter<"Application"> | string
-    coverLetter?: StringNullableFilter<"Application"> | string | null
-    status?: EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
     createdAt?: DateTimeFilter<"Application"> | Date | string
     updatedAt?: DateTimeFilter<"Application"> | Date | string
+    applicantEmail?: StringFilter<"Application"> | string
+    applicantName?: StringFilter<"Application"> | string
+    coverLetter?: StringNullableFilter<"Application"> | string | null
+    resumeLink?: StringFilter<"Application"> | string
+    status?: EnumApplicationStatusFilter<"Application"> | $Enums.ApplicationStatus
   }
 
   export type JobCreateWithoutApplicationsInput = {
@@ -5881,12 +5881,12 @@ export namespace Prisma {
     logo: string
     jobType: $Enums.JobType
     tags?: JobCreatetagsInput | string[]
-    category: $Enums.JobCategory
-    salary: number
     vacancy: number
     workingTime: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    salary: number
+    category: $Enums.JobCategory
   }
 
   export type JobUncheckedCreateWithoutApplicationsInput = {
@@ -5898,12 +5898,12 @@ export namespace Prisma {
     logo: string
     jobType: $Enums.JobType
     tags?: JobCreatetagsInput | string[]
-    category: $Enums.JobCategory
-    salary: number
     vacancy: number
     workingTime: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    salary: number
+    category: $Enums.JobCategory
   }
 
   export type JobCreateOrConnectWithoutApplicationsInput = {
@@ -5931,12 +5931,12 @@ export namespace Prisma {
     logo?: StringFieldUpdateOperationsInput | string
     jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
     tags?: JobUpdatetagsInput | string[]
-    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
-    salary?: FloatFieldUpdateOperationsInput | number
     vacancy?: IntFieldUpdateOperationsInput | number
     workingTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salary?: FloatFieldUpdateOperationsInput | number
+    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
   }
 
   export type JobUncheckedUpdateWithoutApplicationsInput = {
@@ -5948,56 +5948,56 @@ export namespace Prisma {
     logo?: StringFieldUpdateOperationsInput | string
     jobType?: EnumJobTypeFieldUpdateOperationsInput | $Enums.JobType
     tags?: JobUpdatetagsInput | string[]
-    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
-    salary?: FloatFieldUpdateOperationsInput | number
     vacancy?: IntFieldUpdateOperationsInput | number
     workingTime?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    salary?: FloatFieldUpdateOperationsInput | number
+    category?: EnumJobCategoryFieldUpdateOperationsInput | $Enums.JobCategory
   }
 
   export type ApplicationCreateManyJobInput = {
     id?: string
-    applicantName: string
-    applicantEmail: string
-    resumeLink: string
-    coverLetter?: string | null
-    status?: $Enums.ApplicationStatus
     createdAt?: Date | string
     updatedAt?: Date | string
+    applicantEmail: string
+    applicantName: string
+    coverLetter?: string | null
+    resumeLink: string
+    status?: $Enums.ApplicationStatus
   }
 
   export type ApplicationUpdateWithoutJobInput = {
     id?: StringFieldUpdateOperationsInput | string
-    applicantName?: StringFieldUpdateOperationsInput | string
-    applicantEmail?: StringFieldUpdateOperationsInput | string
-    resumeLink?: StringFieldUpdateOperationsInput | string
-    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicantEmail?: StringFieldUpdateOperationsInput | string
+    applicantName?: StringFieldUpdateOperationsInput | string
+    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
+    resumeLink?: StringFieldUpdateOperationsInput | string
+    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   }
 
   export type ApplicationUncheckedUpdateWithoutJobInput = {
     id?: StringFieldUpdateOperationsInput | string
-    applicantName?: StringFieldUpdateOperationsInput | string
-    applicantEmail?: StringFieldUpdateOperationsInput | string
-    resumeLink?: StringFieldUpdateOperationsInput | string
-    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicantEmail?: StringFieldUpdateOperationsInput | string
+    applicantName?: StringFieldUpdateOperationsInput | string
+    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
+    resumeLink?: StringFieldUpdateOperationsInput | string
+    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   }
 
   export type ApplicationUncheckedUpdateManyWithoutJobInput = {
     id?: StringFieldUpdateOperationsInput | string
-    applicantName?: StringFieldUpdateOperationsInput | string
-    applicantEmail?: StringFieldUpdateOperationsInput | string
-    resumeLink?: StringFieldUpdateOperationsInput | string
-    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    applicantEmail?: StringFieldUpdateOperationsInput | string
+    applicantName?: StringFieldUpdateOperationsInput | string
+    coverLetter?: NullableStringFieldUpdateOperationsInput | string | null
+    resumeLink?: StringFieldUpdateOperationsInput | string
+    status?: EnumApplicationStatusFieldUpdateOperationsInput | $Enums.ApplicationStatus
   }
 
 

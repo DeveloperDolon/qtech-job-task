@@ -41,7 +41,7 @@ app.use("/api/v1", router);
 app.get("/", (req: Request, res: Response) => {
   res.send({
     environment: config.node_env,
-    message: "File management system running..",
+    message: "Job portal system running..",
     timeStamp: new Date().toISOString(),
     uptime: process.uptime().toFixed(2) + " sec",
   });

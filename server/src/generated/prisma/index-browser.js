@@ -138,24 +138,24 @@ exports.Prisma.JobScalarFieldEnum = {
   logo: 'logo',
   jobType: 'jobType',
   tags: 'tags',
-  category: 'category',
-  salary: 'salary',
   vacancy: 'vacancy',
   workingTime: 'workingTime',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  salary: 'salary',
+  category: 'category'
 };
 
 exports.Prisma.ApplicationScalarFieldEnum = {
   id: 'id',
   jobId: 'jobId',
-  applicantName: 'applicantName',
-  applicantEmail: 'applicantEmail',
-  resumeLink: 'resumeLink',
-  coverLetter: 'coverLetter',
-  status: 'status',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  applicantEmail: 'applicantEmail',
+  applicantName: 'applicantName',
+  coverLetter: 'coverLetter',
+  resumeLink: 'resumeLink',
+  status: 'status'
 };
 
 exports.Prisma.SortOrder = {
