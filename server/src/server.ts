@@ -10,7 +10,7 @@ async function bootstrap() {
     // Start the server
     server = app.listen(config.port, () => {
       console.log(
-        `🚀 File management system Server is running on http://localhost:${config.port}`
+        `🚀 Job portal system Server is running on http://localhost:${config.port}`
       );
     });
 
