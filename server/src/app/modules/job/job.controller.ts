@@ -2,9 +2,9 @@ import httpStatus from "http-status";
 import type { Request, Response } from "express";
 import catchAsync from "#app/shared/catchAsync.js";
 import sendResponse from "#app/shared/sendResponse.js";
+import { JobService } from "./job.service.js";
 
 const createJob = catchAsync(async (req: Request, res: Response) => {
-  const { JobService } = await import("./job.service.js");
   const job = await JobService.createJob(req.body, req.file as Express.Multer.File);
     sendResponse(res, {
       statusCode: httpStatus.CREATED,
@@ -15,7 +15,6 @@ const createJob = catchAsync(async (req: Request, res: Response) => {
 });
 
 const deleteJob = catchAsync(async (req: Request, res: Response) => {
-  const { JobService } = await import("./job.service.js");
   const job = await JobService.deleteJob(req.params.id as string);
     sendResponse(res, {
       statusCode: httpStatus.OK,

@@ -138,6 +138,8 @@ exports.Prisma.JobScalarFieldEnum = {
   logo: 'logo',
   jobType: 'jobType',
   tags: 'tags',
+  category: 'category',
+  salary: 'salary',
   vacancy: 'vacancy',
   workingTime: 'workingTime',
   createdAt: 'createdAt',
@@ -146,8 +148,11 @@ exports.Prisma.JobScalarFieldEnum = {
 
 exports.Prisma.ApplicationScalarFieldEnum = {
   id: 'id',
-  userId: 'userId',
   jobId: 'jobId',
+  applicantName: 'applicantName',
+  applicantEmail: 'applicantEmail',
+  resumeLink: 'resumeLink',
+  coverLetter: 'coverLetter',
   status: 'status',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -172,6 +177,21 @@ exports.JobType = exports.$Enums.JobType = {
   PART_TIME: 'PART_TIME',
   CONTRACT: 'CONTRACT',
   INTERN: 'INTERN'
+};
+
+exports.JobCategory = exports.$Enums.JobCategory = {
+  SOFTWARE_DEVELOPMENT: 'SOFTWARE_DEVELOPMENT',
+  DESIGN: 'DESIGN',
+  MARKETING: 'MARKETING',
+  SALES: 'SALES',
+  CUSTOMER_SUPPORT: 'CUSTOMER_SUPPORT',
+  HUMAN_RESOURCES: 'HUMAN_RESOURCES'
+};
+
+exports.ApplicationStatus = exports.$Enums.ApplicationStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
 };
 
 exports.Prisma.ModelName = {

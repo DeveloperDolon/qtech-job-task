@@ -3,7 +3,7 @@ import type { TJob } from "./job.interface.js";
 
 const createJob = async (data: TJob, uploadedFile: Express.Multer.File) => {
   const { title, description, company, category, location, jobType, tags, vacancy, workingTime, salary } = data;
-
+  const storageUrl = `/uploads/${uploadedFile.filename}`;
   const job = await prisma.job.create({
     data: {
       title,
@@ -16,7 +16,7 @@ const createJob = async (data: TJob, uploadedFile: Express.Multer.File) => {
       workingTime,
       salary,
       category,
-      logo: uploadedFile.path,
+      logo: storageUrl,
     },
   });
   return job;
