@@ -3,6 +3,7 @@ import type { TJob } from "./job.interface.js";
 
 const createJob = async (data: TJob, uploadedFile: Express.Multer.File) => {
   const { title, description, company, location, jobType, tags, vacancy, workingTime, salary } = data;
+
   const job = await prisma.job.create({
     data: {
       title,
