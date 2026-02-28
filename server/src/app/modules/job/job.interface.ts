@@ -1,3 +1,9 @@
+enum JobType {
+    FULL_TIME = 'FULL_TIME',
+    PART_TIME = 'PART_TIME',
+    CONTRACT = 'CONTRACT',
+    INTERN = 'INTERN'
+}
 
 export type TJob = {
     title: string;
@@ -6,7 +12,7 @@ export type TJob = {
     location: string;
     salary: number;
     logo: File;
-    jobType: string;
+    jobType: JobType;
     tags: string[];
     vacancy: number;
     workingTime: string;

@@ -8,7 +8,7 @@ const jobSchema = z.object({
     location: z.string().min(1, "Location is required"),
     salary: z.number().positive("Salary must be a positive number"),
     logo: z.instanceof(File).refine((file) => file instanceof File, "Logo must be a file"),
-    jobType: z.string().min(1, "Job type is required"),
+    jobType: z.enum(["FULL_TIME", "PART_TIME", "CONTRACT", "INTERN"], "Invalid job type"),
     tags: z.array(z.string()).min(1, "At least one tag is required"),
     vacancy: z.number().int().positive("Vacancy must be a positive integer"),
     workingTime: z.string().min(1, "Working time is required"),
