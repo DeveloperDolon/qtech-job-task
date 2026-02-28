@@ -5,13 +5,22 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider      = "prisma-client-js"
-  output        = "../src/generated/prisma"
-  moduleFormat  = "esm"
+  provider     = "prisma-client-js"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum JobCategory {
+  SOFTWARE_DEVELOPMENT
+  DESIGN
+  MARKETING
+  SALES
+  CUSTOMER_SUPPORT
+  HUMAN_RESOURCES
 }
 
 enum JobType {
@@ -28,7 +37,6 @@ model User {
   password     String
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
-  applications Application[]
 }
 
 model Job {
@@ -40,6 +48,7 @@ model Job {
   logo         String
   jobType      JobType
   tags         String[]
+  category     JobCategory
   salary       Float
   vacancy      Int
   workingTime  String
@@ -49,13 +58,15 @@ model Job {
 }
 
 model Application {
-  id        String   @id @default(uuid())
-  userId    String
-  jobId     String
-  status    String   @default("PENDING")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(uuid())
+  jobId          String
+  applicantName  String
+  applicantEmail String
+  resumeLink         String
+  coverLetter    String?
+  status         String   @default("PENDING")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id])
   job  Job  @relation(fields: [jobId], references: [id])
 }

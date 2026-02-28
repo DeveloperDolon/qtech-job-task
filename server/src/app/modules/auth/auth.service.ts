@@ -7,7 +7,7 @@ import ApiError from "#app/errors/ApiError.js";
 import { jwtHelpers } from "#app/helpers/jwtHelper.js";
 import { sendEmailVerification, sendPasswordResetOTP } from "#app/utils/emailService.js";
 import { generateOTP } from "#app/utils/generateOtp.js";
-import { storeOTP, verifyOTP } from "../otp/otp.service.js";
+// import { storeOTP, verifyOTP } from "../otp/otp.service.js";
 
 const registerUser = async (payload: { email: string; firstName: string; lastName: string; password: string; phone?: string }) => {
   const existingUser = await prisma.user.findUnique({
@@ -20,8 +20,8 @@ const registerUser = async (payload: { email: string; firstName: string; lastNam
 
   const hashedPassword = await bcrypt.hash(payload.password, Number(config.salt_round));
 
-  const otp = generateOTP();
-  await storeOTP(payload.email, "email_verification", otp, 300); // 5 minutes
+  // const otp = generateOTP();
+  // await storeOTP(payload.email, "email_verification", otp, 300); // 5 minutes
 
   await prisma.user.create({
     data: {
@@ -33,17 +33,17 @@ const registerUser = async (payload: { email: string; firstName: string; lastNam
     },
   });
 
-  await sendEmailVerification(payload.email, otp);
+  // await sendEmailVerification(payload.email, otp);
 
   return { message: "Registration successful! Please verify your email." };
 };
 
 const verifyEmail = async (payload: { email: string; otp: string }) => {
-  const isValidOTP = await verifyOTP(payload.email, "email_verification", payload.otp);
+  // const isValidOTP = await verifyOTP(payload.email, "email_verification", payload.otp);
 
-  if (!isValidOTP) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Invalid or expired OTP!");
-  }
+  // if (!isValidOTP) {
+  //   throw new ApiError(httpStatus.BAD_REQUEST, "Invalid or expired OTP!");
+  // }
 
   await prisma.user.update({
     where: { email: payload.email },
@@ -62,10 +62,6 @@ const loginUser = async (payload: { email: string; password: string }) => {
 
   if (!userData) {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found!");
-  }
-
-  if (!userData.isEmailVerified) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Please verify your email first!");
   }
 
   const isCorrectPassword = await bcrypt.compare(payload.password, userData.password);
@@ -165,20 +161,20 @@ const forgotPassword = async (payload: { email: string }) => {
     throw new ApiError(httpStatus.NOT_FOUND, "User not found!");
   }
 
-  const otp = generateOTP();
-  await storeOTP(payload.email, "password_reset", otp, 300); // 5 minutes
+  // const otp = generateOTP();
+  // await storeOTP(payload.email, "password_reset", otp, 300); // 5 minutes
 
-  await sendPasswordResetOTP(userData.email, otp);
+  // await sendPasswordResetOTP(userData.email, otp);
 
   return { message: "Password reset OTP sent to your email!" };
 };
 
 const resetPassword = async (payload: { email: string; otp: string; newPassword: string }) => {
-  const isValidOTP = await verifyOTP(payload.email, "password_reset", payload.otp);
+  // const isValidOTP = await verifyOTP(payload.email, "password_reset", payload.otp);
 
-  if (!isValidOTP) {
-    throw new ApiError(httpStatus.BAD_REQUEST, "Invalid or expired OTP!");
-  }
+  // if (!isValidOTP) {
+  //   throw new ApiError(httpStatus.BAD_REQUEST, "Invalid or expired OTP!");
+  // }
 
   const hashedPassword = await bcrypt.hash(payload.newPassword, Number(config.salt_round));
 
@@ -219,7 +215,7 @@ const resendOTP = async (payload: { email: string; purpose: "email_verification"
   }
 
   const otp = generateOTP();
-  await storeOTP(payload.email, payload.purpose, otp, 300);
+  // await storeOTP(payload.email, payload.purpose, otp, 300);
 
   if (payload.purpose === "email_verification") {
     await sendEmailVerification(payload.email, otp);
