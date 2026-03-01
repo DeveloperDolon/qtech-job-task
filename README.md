@@ -54,3 +54,82 @@ CLOUDINARY_API_SECRET="your_secret"
 
 # --- Server ---
 PORT=5000
+
+# 🚀 Getting Started
+
+Follow these steps to get the project running locally.
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/job-board-project.git
+cd job-board-project
+```
+
+## 2. Backend Setup
+
+```bash
+cd backend
+npm install
+
+# Initialize Database
+npx prisma generate
+npx prisma db push
+
+# Start Development Server
+npm run dev
+```
+
+## 3. Frontend Setup
+
+```bash
+cd client
+npm install
+
+# Launch Vite Dev Server
+npm run dev
+```
+
+---
+
+## 📡 API Architecture (RTK Query)
+
+The frontend utilizes RTK Query for state management, providing automatic caching and cache invalidation for the following endpoints:
+
+| Endpoint | Method | RTK Query Hook | Access |
+|----------|--------|----------------|--------|
+| `/auth/login` | POST | `useAdminLoginMutation` | Public |
+| `/jobs` | GET | `useGetJobsQuery` | Public |
+| `/jobs/:id` | GET | `useGetJobByIdQuery` | Public |
+| `/jobs` | POST | `useCreateJobMutation` | Admin |
+| `/applications` | POST | `useCreateApplicationMutation` | Public |
+| `/applications` | GET | `useGetAllApplicationsQuery` | Admin |
+
+---
+
+## 📜 Available Scripts
+
+### 🖥️ Backend
+
+- `npm run dev` — Hot-reloading development (via tsx).
+- `npm run build` — Compiles TS to optimized JS.
+- `npm run test` — Executes Vitest suite.
+- `npm run prisma:seed` — Populates DB with initial data.
+
+### 🎨 Frontend
+
+- `npm run dev` — Launches Vite development server.
+- `npm run build` — Creates a production-ready build.
+- `npm run lint` — Checks for code quality issues.
+
+---
+
+## 👤 Author
+
+**Dolon Roy**  
+Full-Stack Developer  
+License: ISC
+
+---
+
+*Made with ❤️ using React & Express*
