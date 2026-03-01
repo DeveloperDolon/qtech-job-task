@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../components/layout/MainLayout";
 import { lazy, Suspense } from "react";
 import { PageLoader } from "../components/shared";
+import ProtectedRoute from "../components/shared/ProtectedRoute";
 
 const AdminLoginPage = lazy(() => import("../pages/AdminLoginPage"));
 const HomePage = lazy(() => import("../pages/HomePage"));
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
             <JobDetailPage />
           </Suspense>
         ),
-      }
+      },
     ],
   },
   {
@@ -50,9 +51,11 @@ export const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <Suspense fallback={<PageLoader />}>
-        <AdminPage />
-      </Suspense>
+      <ProtectedRoute>
+        <Suspense fallback={<PageLoader />}>
+          <AdminPage />
+        </Suspense>
+      </ProtectedRoute>
     ),
   },
 ]);
