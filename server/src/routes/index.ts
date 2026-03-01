@@ -8,7 +8,7 @@ const router = express.Router();
 const moduleRoutes = [
   {
     path: "/auth",
-    route: AuthRoutes
+    route: AuthRoutes,
   },
   {
     path: "/jobs",

@@ -1,7 +1,6 @@
-import { PrismaClient } from '#generated/prisma/index.js';
+import { PrismaClient } from "#generated/prisma/index.js";
 // import { neon } from '@neondatabase/serverless';
 // import { PrismaNeon } from '@prisma/adapter-neon';
-
 
 // Use a getter so neon() is never called until prisma is first accessed
 // let _prisma: PrismaClient | null = null;

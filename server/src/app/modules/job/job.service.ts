@@ -2,7 +2,6 @@ import { uploadToCloudinary } from "#app/utils/cloudinary.js";
 import prisma from "#config/prisma.js";
 import type { TJob } from "./job.interface.js";
 
-
 const createJob = async (data: TJob, uploadedFile: Express.Multer.File) => {
   const { title, description, company, category, location, jobType, tags, vacancy, workingTime, salary } = data;
 

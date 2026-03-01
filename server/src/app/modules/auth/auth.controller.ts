@@ -36,7 +36,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
     sameSite: "lax",
     maxAge: 1000 * 60 * 60, // 1 hour
   });
-  
+
   res.cookie("refreshToken", refreshToken, {
     secure: process.env.NODE_ENV === "production",
     httpOnly: true,

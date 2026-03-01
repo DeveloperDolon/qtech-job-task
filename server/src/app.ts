@@ -16,18 +16,14 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     origin: (origin, callback) => {
-      const allowedOrigins = [
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://localhost:3001",
-      ];
+      const allowedOrigins = ["http://localhost:5173", "http://localhost:3000", "http://localhost:3001"];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error("Not allowed by CORS"));
       }
     },
-  })
+  }),
 );
 
 //parser
@@ -47,7 +43,7 @@ app.get("/", (req: Request, res: Response) => {
   });
 });
 
-app.use(globalErrorHandler); 
+app.use(globalErrorHandler);
 
 app.use(notFound);
 

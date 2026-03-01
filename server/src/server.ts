@@ -9,9 +9,7 @@ async function bootstrap() {
   try {
     // Start the server
     server = app.listen(config.port, () => {
-      console.log(
-        `🚀 Job portal system Server is running on http://localhost:${config.port}`
-      );
+      console.log(`🚀 Job portal system Server is running on http://localhost:${config.port}`);
     });
 
     // Function to gracefully shut down the server
@@ -28,9 +26,7 @@ async function bootstrap() {
 
     // Handle unhandled promise rejections
     process.on("unhandledRejection", (error) => {
-      console.log(
-        "Unhandled Rejection is detected, we are closing our server..."
-      );
+      console.log("Unhandled Rejection is detected, we are closing our server...");
     });
   } catch (error) {
     console.error("Error during server startup:", error);

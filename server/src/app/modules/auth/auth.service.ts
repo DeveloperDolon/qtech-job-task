@@ -110,7 +110,7 @@ const refreshToken = async (token: string) => {
 
   const accessToken = jwtHelpers.generateToken(
     {
-      email: userData.email
+      email: userData.email,
     },
     config.jwt.jwt_access_secret as Secret,
     config.jwt.expires_in as string,

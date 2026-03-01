@@ -27,23 +27,23 @@ const getApplicationsByJobId = async (jobId: string) => {
 
 const getAllApplications = async (payload: { search: string }) => {
   const whereCondition: Prisma.ApplicationWhereInput = payload.search
-  ? {
-      OR: [
-        {
-          applicantName: {
-            contains: payload.search,
-            mode: "insensitive",
+    ? {
+        OR: [
+          {
+            applicantName: {
+              contains: payload.search,
+              mode: "insensitive",
+            },
           },
-        },
-        {
-          applicantEmail: {
-            contains: payload.search,
-            mode: "insensitive",
+          {
+            applicantEmail: {
+              contains: payload.search,
+              mode: "insensitive",
+            },
           },
-        },
-      ],
-    }
-  : {};
+        ],
+      }
+    : {};
 
   const applications = await prisma.application.findMany({
     where: whereCondition,

@@ -1,4 +1,4 @@
-import httpStatus from 'http-status';
+import httpStatus from "http-status";
 import prisma from "#config/prisma.js";
 import ApiError from "#app/errors/ApiError.js";
 // ─── Enforcement Helper ────────────────────────────────────────────────────────

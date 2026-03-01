@@ -7,13 +7,7 @@ import { JobValidation } from "./job.validation.js";
 
 const router = express.Router();
 
-router.post(
-  "/",
-  authGuard(),
-  uploadMiddleware.single("logo"), 
-  validateRequest(JobValidation.jobSchema),
-  JobController.createJob,
-);
+router.post("/", authGuard(), uploadMiddleware.single("logo"), validateRequest(JobValidation.jobSchema), JobController.createJob);
 router.delete("/:id", authGuard(), JobController.deleteJob);
 
 router.get("/", JobController.getAllJobs);

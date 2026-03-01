@@ -5,14 +5,7 @@ import httpStatus from "http-status";
 // Use Memory Storage instead of Disk Storage
 const storage = multer.memoryStorage();
 
-const allowedMimeTypes = [
-  "image/jpeg",
-  "image/png",
-  "image/gif",
-  "image/webp",
-  "image/svg+xml",
-  "application/pdf",
-];
+const allowedMimeTypes = ["image/jpeg", "image/png", "image/gif", "image/webp", "image/svg+xml", "application/pdf"];
 
 const fileFilter: multer.Options["fileFilter"] = (_req, file, cb) => {
   if (allowedMimeTypes.includes(file.mimetype)) {
