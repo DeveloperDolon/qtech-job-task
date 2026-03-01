@@ -13,29 +13,35 @@
 ## 🌟 Key Features
 
 ### 👤 Candidate Experience (Public)
-*   **Dynamic Landing Page**: Hero section with featured job categories and latest postings.
-*   **Advanced Job Search**: Filter and search through listings by category and employment type.
-*   **Seamless Applications**: Detailed job views with a built-in application modal.
+
+- **Dynamic Landing Page**: Hero section with featured job categories and latest postings.
+- **Advanced Job Search**: Filter and search through listings by category and employment type.
+- **Seamless Applications**: Detailed job views with a built-in application modal.
 
 ### 🔐 Admin Dashboard (Protected)
-*   **Identity Management**: Secure admin authentication powered by **JWT** and **Bcrypt**.
-       . For testing 
-            User email: ```admin@gmail.com```
-            Password: ```password123```
-*   **Job Lifecycle**: Create, update, and delete job listings with integrated **Cloudinary** logo uploads.
-*   **Application Management**: Centralized dashboard to track and manage all incoming candidate applications.
+
+- **Identity Management**: Secure admin authentication powered by **JWT** and **Bcrypt**.
+  . For testing
+  User email: `bash
+      admin@gmail.com
+      `
+  Password: `bash
+password123
+`
+- **Job Lifecycle**: Create, update, and delete job listings with integrated **Cloudinary** logo uploads.
+- **Application Management**: Centralized dashboard to track and manage all incoming candidate applications.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-| :--- | :--- |
+| Layer        | Technology                                                                   |
+| :----------- | :--------------------------------------------------------------------------- |
 | **Frontend** | React 19, TypeScript, Redux Toolkit, RTK Query, Tailwind CSS 4, Lucide Icons |
-| **Backend** | Express 5, TypeScript, Prisma ORM, Multer |
-| **Database** | PostgreSQL (Neon Database) |
-| **Storage** | Cloudinary (Image Hosting) |
-| **Testing** | Vitest |
+| **Backend**  | Express 5, TypeScript, Prisma ORM, Multer                                    |
+| **Database** | PostgreSQL (Neon Database)                                                   |
+| **Storage**  | Cloudinary (Image Hosting)                                                   |
+| **Testing**  | Vitest                                                                       |
 
 ---
 
@@ -43,7 +49,7 @@
 
 Create a `.env` file in the `/backend` directory and populate it with the following:
 
-```env
+````env
 # --- Database ---
 DATABASE_URL="postgresql://user:password@host:port/db?sslmode=require"
 
@@ -67,7 +73,7 @@ Follow these steps to get the project running locally.
 ```bash
 git clone https://github.com/yourusername/job-board-project.git
 cd job-board-project
-```
+````
 
 ## 2. Backend Setup
 
@@ -99,14 +105,14 @@ npm run dev
 
 The frontend utilizes RTK Query for state management, providing automatic caching and cache invalidation for the following endpoints:
 
-| Endpoint | Method | RTK Query Hook | Access |
-|----------|--------|----------------|--------|
-| `/auth/login` | POST | `useAdminLoginMutation` | Public |
-| `/jobs` | GET | `useGetJobsQuery` | Public |
-| `/jobs/:id` | GET | `useGetJobByIdQuery` | Public |
-| `/jobs` | POST | `useCreateJobMutation` | Admin |
-| `/applications` | POST | `useCreateApplicationMutation` | Public |
-| `/applications` | GET | `useGetAllApplicationsQuery` | Admin |
+| Endpoint        | Method | RTK Query Hook                 | Access |
+| --------------- | ------ | ------------------------------ | ------ |
+| `/auth/login`   | POST   | `useAdminLoginMutation`        | Public |
+| `/jobs`         | GET    | `useGetJobsQuery`              | Public |
+| `/jobs/:id`     | GET    | `useGetJobByIdQuery`           | Public |
+| `/jobs`         | POST   | `useCreateJobMutation`         | Admin  |
+| `/applications` | POST   | `useCreateApplicationMutation` | Public |
+| `/applications` | GET    | `useGetAllApplicationsQuery`   | Admin  |
 
 ---
 
@@ -135,4 +141,4 @@ License: ISC
 
 ---
 
-*Made with ❤️ using React & Express*
+_Made with ❤️ using React & Express_
