@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Spinner } from "../components/common";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { setCredentials } from "../store/slice/authSlice";
+import { useAdminLoginMutation } from "../store/api/authApi";
+import { Spinner } from "../components/shared";
 
 const AdminLoginPage: React.FC = () => {
   const [form, setForm] = useState({ email: "", password: "" });
