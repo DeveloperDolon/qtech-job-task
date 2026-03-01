@@ -7,6 +7,7 @@ const AdminLoginPage = lazy(() => import("../pages/AdminLoginPage"));
 const HomePage = lazy(() => import("../pages/HomePage"));
 const AdminPage = lazy(() => import("../pages/AdminPage"));
 const JobsPage = lazy(() => import("../pages/JobPage"));
+const JobDetailPage = lazy(() => import("../pages/JobDetailPage"));
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ export const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: "/jobs/:id",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <JobDetailPage />
+          </Suspense>
+        ),
+      }
     ],
   },
   {
