@@ -6,6 +6,7 @@ import { PageLoader } from "../components/shared";
 const AdminLoginPage = lazy(() => import("../pages/AdminLoginPage"));
 const HomePage = lazy(() => import("../pages/HomePage"));
 const AdminPage = lazy(() => import("../pages/AdminPage"));
+const JobsPage = lazy(() => import("../pages/JobPage"));
 
 export const router = createBrowserRouter([
   {
@@ -20,21 +21,29 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/admin/login",
+        path: "/jobs",
         element: (
           <Suspense fallback={<PageLoader />}>
-            <AdminLoginPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: "/admin",
-        element: (
-          <Suspense fallback={<PageLoader />}>
-            <AdminPage />
+            <JobsPage />
           </Suspense>
         ),
       },
     ],
+  },
+  {
+    path: "/admin/login",
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <AdminLoginPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <Suspense fallback={<PageLoader />}>
+        <AdminPage />
+      </Suspense>
+    ),
   },
 ]);
