@@ -33,7 +33,9 @@ const AdminLoginPage: React.FC = () => {
       dispatch(setCredentials({ token: result.data.token }));
       navigate("/admin");
     } catch (err: any) {
-      setErrors({ submit: err?.data?.message || "Invalid credentials. Please try again." });
+      setErrors({
+        submit: err?.data?.message || "Invalid credentials. Please try again.",
+      });
     }
   };
 
@@ -45,8 +47,12 @@ const AdminLoginPage: React.FC = () => {
           <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-3">
             <span className="text-white font-bold text-lg">Q</span>
           </div>
-          <h1 className="text-2xl font-bold text-brand-dark font-epilogue">Welcome back</h1>
-          <p className="text-brand-gray text-sm mt-1">Sign in to your admin account</p>
+          <h1 className="text-2xl font-bold text-brand-dark font-epilogue">
+            Welcome back
+          </h1>
+          <p className="text-brand-gray text-sm mt-1">
+            Sign in to your admin account
+          </p>
         </div>
 
         <div className="bg-white rounded-2xl border border-brand-lightgray p-8 shadow-sm">
@@ -71,7 +77,9 @@ const AdminLoginPage: React.FC = () => {
                 placeholder="admin@quickhire.com"
                 className={`w-full border ${errors.email ? "border-red-400" : "border-brand-lightgray"} rounded-lg px-4 py-3 text-sm outline-none focus:border-primary transition-colors`}
               />
-              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+              {errors.email && (
+                <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+              )}
             </div>
 
             <div>
@@ -88,7 +96,9 @@ const AdminLoginPage: React.FC = () => {
                 placeholder="••••••••"
                 className={`w-full border ${errors.password ? "border-red-400" : "border-brand-lightgray"} rounded-lg px-4 py-3 text-sm outline-none focus:border-primary transition-colors`}
               />
-              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+              )}
             </div>
 
             <button

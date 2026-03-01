@@ -1,10 +1,14 @@
 import React from "react";
 
 // Loading Spinner
-export const Spinner: React.FC<{ size?: "sm" | "md" | "lg" }> = ({ size = "md" }) => {
+export const Spinner: React.FC<{ size?: "sm" | "md" | "lg" }> = ({
+  size = "md",
+}) => {
   const sizeClass = { sm: "w-4 h-4", md: "w-8 h-8", lg: "w-12 h-12" }[size];
   return (
-    <div className={`${sizeClass} border-2 border-primary border-t-transparent rounded-full animate-spin`} />
+    <div
+      className={`${sizeClass} border-2 border-primary border-t-transparent rounded-full animate-spin`}
+    />
   );
 };
 
@@ -16,7 +20,11 @@ export const PageLoader: React.FC = () => (
 );
 
 // Empty State
-export const EmptyState: React.FC<{ title?: string; description?: string; icon?: string }> = ({
+export const EmptyState: React.FC<{
+  title?: string;
+  description?: string;
+  icon?: string;
+}> = ({
   title = "No results found",
   description = "Try adjusting your search or filters.",
   icon = "🔍",
@@ -29,10 +37,10 @@ export const EmptyState: React.FC<{ title?: string; description?: string; icon?:
 );
 
 // Tag Badge
-export const TagBadge: React.FC<{ label: string; color?: "default" | "primary" | "green" | "amber" }> = ({
-  label,
-  color = "default",
-}) => {
+export const TagBadge: React.FC<{
+  label: string;
+  color?: "default" | "primary" | "green" | "amber";
+}> = ({ label, color = "default" }) => {
   const colorClass = {
     default: "bg-brand-bg text-brand-gray border border-brand-lightgray",
     primary: "bg-primary-50 text-primary border border-primary-100",
@@ -40,7 +48,9 @@ export const TagBadge: React.FC<{ label: string; color?: "default" | "primary" |
     amber: "bg-amber-50 text-amber-600 border border-amber-200",
   }[color];
   return (
-    <span className={`text-xs font-medium px-3 py-1 rounded-full ${colorClass}`}>
+    <span
+      className={`text-xs font-medium px-3 py-1 rounded-full ${colorClass}`}
+    >
       {label}
     </span>
   );
@@ -60,8 +70,15 @@ export const Modal: React.FC<{
       <div className="relative bg-white rounded-2xl w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto">
         {title && (
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
-            <h2 className="text-lg font-bold text-brand-dark font-epilogue">{title}</h2>
-            <button onClick={onClose} className="text-brand-gray hover:text-brand-dark text-xl leading-none">×</button>
+            <h2 className="text-lg font-bold text-brand-dark font-epilogue">
+              {title}
+            </h2>
+            <button
+              onClick={onClose}
+              className="text-brand-gray hover:text-brand-dark text-xl leading-none"
+            >
+              ×
+            </button>
           </div>
         )}
         <div className="p-6">{children}</div>
