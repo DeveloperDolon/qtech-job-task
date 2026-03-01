@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import patternImage from "../assets/Pattern.png";
 import personImage from "../assets/Pic.png";
+import dashboardImage from "../assets/dashboard.png";
 import {
   Paintbrush, // For Design
   LineChart, // For Sales
@@ -119,6 +120,103 @@ const LATEST_JOBS = [
     location: "Lucern, Switzerland",
     tags: ["Full Time", "Marketing", "Design"],
     logoColor: "bg-blue-400",
+  },
+];
+
+const FEATURED_JOBS = [
+  {
+    id: 1,
+    company: "Revolut",
+    title: "Email Marketing",
+    location: "Madrid, Spain",
+    description: "Revolut is looking for Email Marketing to help team ma ...",
+    type: "Full Time",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Revolut_logo.svg",
+    tags: [
+      { label: "Marketing", color: "text-orange-400 bg-orange-50" },
+      { label: "Design", color: "text-teal-500 bg-teal-50" },
+    ],
+  },
+  {
+    id: 2,
+    company: "Dropbox",
+    title: "Brand Designer",
+    location: "San Fransisco, US",
+    description: "Dropbox is looking for Brand Designer to help the team t ...",
+    type: "Full Time",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/7/78/Dropbox_Icon.svg",
+    tags: [
+      { label: "Design", color: "text-teal-500 bg-teal-50" },
+      { label: "Business", color: "text-blue-600 bg-blue-50" },
+    ],
+  },
+  {
+    id: 3,
+    company: "Pitch",
+    title: "Email Marketing",
+    location: "Berlin, Germany",
+    description:
+      "Pitch is looking for Customer Manager to join marketing t ...",
+    type: "Full Time",
+    logo: "https://pitch.com/favicon-32x32.png",
+    tags: [{ label: "Marketing", color: "text-orange-400 bg-orange-50" }],
+  },
+  {
+    id: 4,
+    company: "Blinklist",
+    title: "Visual Designer",
+    location: "Granada, Spain",
+    description:
+      "Blinklist is looking for Visual Designer to help team desi ...",
+    type: "Full Time",
+    logo: "https://www.blinkist.com/favicon.ico",
+    tags: [{ label: "Design", color: "text-teal-500 bg-teal-50" }],
+  },
+  {
+    id: 5,
+    company: "ClassPass",
+    title: "Product Designer",
+    location: "Manchester, UK",
+    description: "ClassPass is looking for Product Designer to help us...",
+    type: "Full Time",
+    logo: "https://classpass.com/favicon.ico",
+    tags: [
+      { label: "Marketing", color: "text-orange-400 bg-orange-50" },
+      { label: "Design", color: "text-teal-500 bg-teal-50" },
+    ],
+  },
+  {
+    id: 6,
+    company: "Canva",
+    title: "Lead Designer",
+    location: "Ontario, Canada",
+    description: "Canva is looking for Lead Engineer to help develop n ...",
+    type: "Full Time",
+    logo: "https://www.canva.com/favicon.ico",
+    tags: [
+      { label: "Design", color: "text-teal-500 bg-teal-50" },
+      { label: "Business", color: "text-blue-600 bg-blue-50" },
+    ],
+  },
+  {
+    id: 7,
+    company: "GoDaddy",
+    title: "Brand Strategist",
+    location: "Marseille, France",
+    description: "GoDaddy is looking for Brand Strategist to join the team...",
+    type: "Full Time",
+    logo: "https://www.godaddy.com/favicon.ico",
+    tags: [{ label: "Marketing", color: "text-orange-400 bg-orange-50" }],
+  },
+  {
+    id: 8,
+    company: "Twitter",
+    title: "Data Analyst",
+    location: "San Diego, US",
+    description: "Twitter is looking for Data Analyst to help team desi ...",
+    type: "Full Time",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg",
+    tags: [{ label: "Technology", color: "text-red-400 bg-red-50" }],
   },
 ];
 
@@ -358,36 +456,124 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-primary rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 overflow-hidden relative">
-            <div className="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full" />
-            <div className="absolute -right-5 bottom-0 w-24 h-24 bg-white/5 rounded-full" />
-            <div>
-              <h2 className="text-white text-2xl md:text-3xl font-bold font-epilogue mb-2">
-                Start posting
-                <br />
-                jobs today
-              </h2>
-              <p className="text-primary-100 text-sm">
-                Start posting jobs for only $10.
-              </p>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto relative">
+          {/* The Angled Background Shape */}
+          <div
+            className="bg-[#4640DE] w-full min-h-[440px] relative flex items-center"
+            style={{
+              // Point 1: Top-Left (cut starts)
+              // Point 2: Top Edge (cut ends)
+              // Point 3: Top-Right (square)
+              // Point 4: Right Edge (bottom cut starts)
+              // Point 5: Bottom Edge (bottom cut ends)
+              // Point 6: Bottom-Left (square)
+              clipPath:
+                "polygon(0% 30%, 15% 0%, 100% 0%, 100% 70%, 85% 100%, 0% 100%)",
+            }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full px-8 md:px-20 py-16 md:py-0">
+              {/* Left Content */}
+              <div className="z-10 text-white">
+                <h2 className="text-4xl md:text-[56px] font-bold font-epilogue leading-[1.1] mb-6">
+                  Start posting <br />
+                  jobs today
+                </h2>
+                <p className="text-white/90 text-lg md:text-xl font-medium mb-10">
+                  Start posting jobs for only $10.
+                </p>
+                <div>
+                  <button
+                    onClick={() => navigate("/admin/login")}
+                    className="bg-white text-[#4640DE] font-bold px-10 py-4 rounded-sm hover:bg-gray-100 transition-all text-lg shadow-xl"
+                  >
+                    Sign Up For Free
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Side - Dashboard Placement */}
+              <div className="hidden md:block relative self-stretch">
+                <img
+                  src={dashboardImage} // Replace with your actual image path
+                  alt="Dashboard UI Mockup"
+                  className="absolute top-1/2 -translate-y-1/2 left-4 w-[130%] max-w-none shadow-2xl rounded-sm"
+                  style={{
+                    filter: "drop-shadow(0 35px 60px rgba(0,0,0,0.4))",
+                  }}
+                />
+              </div>
             </div>
-            <div className="flex-shrink-0">
-              <button
-                onClick={() => navigate("/admin/login")}
-                className="bg-white text-primary font-bold px-6 py-3 rounded-md hover:bg-primary-50 transition-colors"
+          </div>
+        </div>
+      </section>
+
+      {/* featured job list -->  */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#202430] font-epilogue">
+              Featured <span className="text-[#26A4FF]">jobs</span>
+            </h2>
+            <button className="text-[#4640DE] font-bold flex items-center gap-2 hover:underline transition-all group">
+              Show all jobs
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+
+          {/* Grid Container */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {FEATURED_JOBS.map((job) => (
+              <div
+                key={job.id}
+                className="border border-[#E4E5E8] p-6 flex flex-col bg-white hover:border-[#4640DE] transition-colors cursor-pointer"
               >
-                Sign Up For Free
-              </button>
-            </div>
+                {/* Top Row: Logo & Type Badge */}
+                <div className="flex justify-between items-start mb-6">
+                  <img
+                    src={job.logo}
+                    alt={job.company}
+                    className="w-10 h-10 object-contain"
+                  />
+                  <span className="border border-[#4640DE] text-[#4640DE] px-3 py-1 text-xs font-semibold">
+                    {job.type}
+                  </span>
+                </div>
+
+                {/* Job Titles */}
+                <h3 className="text-[#202430] text-lg font-bold mb-1 leading-tight">
+                  {job.title}
+                </h3>
+                <p className="text-[#7C8493] text-sm mb-4">
+                  {job.company} <span className="mx-1">•</span> {job.location}
+                </p>
+
+                {/* Description Excerpt */}
+                <p className="text-[#7C8493] text-sm mb-6 line-clamp-2 leading-relaxed">
+                  {job.description}
+                </p>
+
+                {/* Bottom Tags */}
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {job.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className={`px-4 py-1 rounded-full text-xs font-semibold ${tag.color}`}
+                    >
+                      {tag.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Latest Jobs */}
       <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-10">
             <h2 className="text-2xl md:text-3xl font-bold text-brand-dark font-epilogue">
               Latest <span className="text-primary">jobs open</span>
