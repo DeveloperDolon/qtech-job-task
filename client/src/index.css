@@ -1,1 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&display=swap');
+
 @import "tailwindcss";
+
+/* Base styles */
+@layer base {
+  body {
+    font-family: 'Epilogue', sans-serif;
+    color: #202430;
+  }
+}
+
+/* Custom Utilities */
+@utility line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@utility line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@theme {
+  --color-primary: #4640DE;
+  --color-primary-light: #F8F8FD;
+  --color-primary-50: #F0F0FF;
+  --color-primary-100: #E1E1FF;
+  --color-primary-500: #4640DE;
+  --color-primary-600: #3B35C9;
+  --color-primary-700: #2F29A6;
+
+  --color-brand-purple: #4640DE;
+  --color-brand-dark: #202430;
+  --color-brand-gray: #7C8493;
+  --color-brand-lightgray: #D6DDEB;
+  --color-brand-bg: #F8F8FD;
+
+  --font-epilogue: "Epilogue", sans-serif;
+}

@@ -1,16 +1,24 @@
-import Navbar from "../shared/NavBar";
 import { Outlet } from "react-router-dom";
+import Footer from "../shared/Footer";
+import Navbar from "../shared/NavBar";
 
 const MainLayout = () => {
-
   return (
-    <div className="min-h-screen bg-gray-50 flex">
-      <Navbar/>
-      <div className="flex-1 flex flex-col">
-        <main className="flex-1 p-6 overflow-y-auto">
-          <Outlet />
-        </main>
+    <div className="min-h-screen flex flex-col">
+      {/* Navbar */}
+      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <Navbar />
+      </header>
+
+      {/* Main Content */}
+      <div className="bg-white max-w-[1500px] mx-auto min-h-[60vh]">
+        <Outlet />
       </div>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-gray-200 mt-10">
+        <Footer />
+      </footer>
     </div>
   );
 };
