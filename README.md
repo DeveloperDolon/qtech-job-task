@@ -22,12 +22,14 @@
 
 - **Identity Management**: Secure admin authentication powered by **JWT** and **Bcrypt**.
   . For testing
-  User email: ````bash       admin@gmail.com
-    ````
-  Password: ````bash
-  password123
-
-`````
+  User email: 
+    `````     
+    admin@gmail.com
+    `````
+  Password: 
+    `````bash
+    password123
+    `````
 - **Job Lifecycle**: Create, update, and delete job listings with integrated **Cloudinary** logo uploads.
 - **Application Management**: Centralized dashboard to track and manage all incoming candidate applications.
 
