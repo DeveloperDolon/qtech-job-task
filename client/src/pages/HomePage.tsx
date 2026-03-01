@@ -3,7 +3,28 @@ import { useNavigate } from "react-router-dom";
 import patternImage from "../assets/Pattern.png";
 import personImage from "../assets/Pic.png";
 
-const COMPANIES = ["vodafone", "intel", "TESLA", "AMD", "Talkit"];
+const COMPANIES = [
+  {
+    name: "Vodafone",
+    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/c/cc/Vodafone_2017_logo.svg/250px-Vodafone_2017_logo.svg.png",
+  },
+  {
+    name: "Intel",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Intel_logo_2023.svg/250px-Intel_logo_2023.svg.png",
+  },
+  {
+    name: "Tesla",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg",
+  },
+  {
+    name: "AMD",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/7/7c/AMD_Logo.svg",
+  },
+  {
+    name: "Talkit",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+  }, // Replace with your Talkit asset
+];
 
 const CATEGORIES = [
   { icon: "✏️", name: "Design", count: 235, bg: "bg-white" },
@@ -125,7 +146,7 @@ const HomePage: React.FC = () => {
             className="w-[60%] h-full object-cover"
           />
         </div>
-        
+
         <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Content */}
@@ -253,20 +274,24 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Companies */}
-      <section className="py-12 border-b border-gray-100">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-brand-gray text-xs mb-6">
+          <p className="text-[#7C8493] text-lg font-medium mb-10 opacity-70">
             Companies we helped grow
           </p>
-          <div className="flex flex-wrap gap-8 items-center">
+
+          <div className="flex flex-wrap items-center justify-between gap-10">
             {COMPANIES.map((company) => (
-              <span
-                key={company}
-                className="text-gray-400 font-bold text-sm tracking-wider uppercase"
+              <div
+                key={company.name}
+                className="flex items-center justify-center grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               >
-                {company}
-              </span>
+                <img
+                  src={company.logo}
+                  alt={`${company.name} logo`}
+                  className="h-8 md:h-10 w-auto object-contain"
+                />
+              </div>
             ))}
           </div>
         </div>
