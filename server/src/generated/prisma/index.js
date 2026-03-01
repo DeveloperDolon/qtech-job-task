@@ -195,6 +195,10 @@ const config = {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [
@@ -223,8 +227,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"driverAdapters\"]\n  output          = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  name      String?\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Job {\n  id           String        @id @default(uuid())\n  title        String\n  description  String\n  company      String\n  location     String\n  logo         String\n  jobType      JobType\n  tags         String[]\n  vacancy      Int\n  workingTime  String\n  createdAt    DateTime      @default(now())\n  updatedAt    DateTime      @updatedAt\n  salary       Float\n  category     JobCategory\n  applications Application[]\n}\n\nmodel Application {\n  id             String            @id @default(uuid())\n  jobId          String\n  createdAt      DateTime          @default(now())\n  updatedAt      DateTime          @updatedAt\n  applicantEmail String\n  applicantName  String\n  coverLetter    String?\n  resumeLink     String\n  status         ApplicationStatus @default(PENDING)\n  job            Job               @relation(fields: [jobId], references: [id])\n}\n\nenum ApplicationStatus {\n  PENDING\n  ACCEPTED\n  REJECTED\n}\n\nenum JobCategory {\n  SOFTWARE_DEVELOPMENT\n  DESIGN\n  MARKETING\n  SALES\n  CUSTOMER_SUPPORT\n  HUMAN_RESOURCES\n}\n\nenum JobType {\n  FULL_TIME\n  PART_TIME\n  CONTRACT\n  INTERN\n}\n",
-  "inlineSchemaHash": "e149d1ff801c3bd8c8461b756b0736104bb775b08a3afa104b95838713829d1a",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"driverAdapters\"]\n  output          = \"../src/generated/prisma\"\n  binaryTargets   = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  name      String?\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Job {\n  id           String        @id @default(uuid())\n  title        String\n  description  String\n  company      String\n  location     String\n  logo         String\n  jobType      JobType\n  tags         String[]\n  vacancy      Int\n  workingTime  String\n  createdAt    DateTime      @default(now())\n  updatedAt    DateTime      @updatedAt\n  salary       Float\n  category     JobCategory\n  applications Application[]\n}\n\nmodel Application {\n  id             String            @id @default(uuid())\n  jobId          String\n  createdAt      DateTime          @default(now())\n  updatedAt      DateTime          @updatedAt\n  applicantEmail String\n  applicantName  String\n  coverLetter    String?\n  resumeLink     String\n  status         ApplicationStatus @default(PENDING)\n  job            Job               @relation(fields: [jobId], references: [id])\n}\n\nenum ApplicationStatus {\n  PENDING\n  ACCEPTED\n  REJECTED\n}\n\nenum JobCategory {\n  SOFTWARE_DEVELOPMENT\n  DESIGN\n  MARKETING\n  SALES\n  CUSTOMER_SUPPORT\n  HUMAN_RESOURCES\n}\n\nenum JobType {\n  FULL_TIME\n  PART_TIME\n  CONTRACT\n  INTERN\n}\n",
+  "inlineSchemaHash": "fd8445bb8c99371d614bb399c447a3b1105b28e0c915853be55a1f8bff412b48",
   "copyEngine": true
 }
 
@@ -265,6 +269,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
 path.join(process.cwd(), "src/generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/generated/prisma/schema.prisma")
