@@ -2,6 +2,16 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import patternImage from "../assets/Pattern.png";
 import personImage from "../assets/Pic.png";
+import {
+  Paintbrush, // For Design
+  LineChart, // For Sales
+  Megaphone, // For Marketing
+  Briefcase, // For Finance, Business
+  Monitor, // For Technology
+  Code, // For Engineering
+  Users, // For Human Resource
+  ArrowRight,
+} from "lucide-react";
 
 const COMPANIES = [
   {
@@ -23,24 +33,18 @@ const COMPANIES = [
   {
     name: "Talkit",
     logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
-  }, // Replace with your Talkit asset
+  },
 ];
 
 const CATEGORIES = [
-  { icon: "✏️", name: "Design", count: 235, bg: "bg-white" },
-  { icon: "📊", name: "Sales", count: 756, bg: "bg-white" },
-  {
-    icon: "📢",
-    name: "Marketing",
-    count: 140,
-    bg: "bg-primary",
-    featured: true,
-  },
-  { icon: "💼", name: "Finance", count: 325, bg: "bg-white" },
-  { icon: "💻", name: "Technology", count: 435, bg: "bg-white" },
-  { icon: "</>", name: "Engineering", count: 542, bg: "bg-white" },
-  { icon: "🏢", name: "Business", count: 211, bg: "bg-white" },
-  { icon: "👥", name: "Human Resource", count: 346, bg: "bg-white" },
+  { icon: Paintbrush, name: "Design", count: 235 },
+  { icon: LineChart, name: "Sales", count: 756 },
+  { icon: Megaphone, name: "Marketing", count: 140, featured: true },
+  { icon: Briefcase, name: "Finance", count: 325 },
+  { icon: Monitor, name: "Technology", count: 435 },
+  { icon: Code, name: "Engineering", count: 542 },
+  { icon: Briefcase, name: "Business", count: 211 }, // Re-using Briefcase for Business
+  { icon: Users, name: "Human Resource", count: 346 },
 ];
 
 const LATEST_JOBS = [
@@ -298,21 +302,22 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Explore by Category */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-brand-dark font-epilogue">
-              Explore by <span className="text-primary">category</span>
+      <section className="py-16 bg-white">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#202430] font-epilogue leading-tight">
+              Explore by <span className="text-[#26A4FF]">category</span>
             </h2>
             <button
               onClick={() => navigate("/jobs")}
-              className="text-primary text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+              className="text-[#4640DE] text-base font-semibold flex items-center gap-2 hover:gap-3 transition-all group"
             >
-              Show all jobs →
+              Show all jobs
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {CATEGORIES.map((cat) => (
               <button
                 key={cat.name}
@@ -321,24 +326,30 @@ const HomePage: React.FC = () => {
                     `/jobs?category=${cat.name.toUpperCase().replace(/ /g, "_")}`,
                   )
                 }
-                className={`${cat.featured ? "bg-primary text-white" : "bg-white text-brand-dark border border-brand-lightgray hover:border-primary"} 
-                  rounded-xl p-5 text-left transition-all hover:shadow-md group`}
+                className={`flex flex-col items-start p-6 rounded-lg border border-[#E4E5E8] transition-all hover:shadow-lg
+                  ${cat.featured ? "bg-[#4640DE] text-white" : "bg-white text-[#202430] hover:border-[#4640DE]"}
+                `}
               >
-                <div className="text-2xl mb-3">{cat.icon}</div>
+                <div
+                  className={`mb-4 ${cat.featured ? "text-white" : "text-[#4640DE]"}`}
+                >
+                  <cat.icon size={36} strokeWidth={1.5} />{" "}
+                  {/* Render Lucide icon */}
+                </div>
                 <h3
-                  className={`font-semibold text-sm mb-1 ${cat.featured ? "text-white" : "text-brand-dark"}`}
+                  className={`font-semibold text-xl mb-1 ${cat.featured ? "text-white" : "text-[#202430]"}`}
                 >
                   {cat.name}
                 </h3>
                 <p
-                  className={`text-xs flex items-center gap-1 ${cat.featured ? "text-primary-100" : "text-brand-gray"}`}
+                  className={`text-sm flex items-center gap-1 group transition-colors
+                  ${cat.featured ? "text-white opacity-70" : "text-[#7C8493]"}
+                `}
                 >
                   {cat.count} jobs available
-                  <span
-                    className={`group-hover:translate-x-1 transition-transform inline-block`}
-                  >
-                    →
-                  </span>
+                  <ArrowRight
+                    className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${cat.featured ? "text-white" : "text-[#7C8493]"} opacity-70`}
+                  />
                 </p>
               </button>
             ))}
