@@ -5,7 +5,7 @@ import catchAsync from "#app/shared/catchAsync.js";
 import sendResponse from "#app/shared/sendResponse.js";
 
 const createApplication = catchAsync(async (req: Request, res: Response) => {
-  const application = await ApplicationService.createApplication(req.body, req.file as Express.Multer.File);
+  const application = await ApplicationService.createApplication(req.body);
   sendResponse(res, {
     statusCode: httpStatus.CREATED,
     success: true,

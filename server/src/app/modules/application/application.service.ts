@@ -2,16 +2,15 @@ import type { TApplication } from "./application.interface.js";
 import prisma from "#config/prisma.js";
 import type { Prisma } from "#generated/prisma/index.js";
 
-const createApplication = async (payload: TApplication, resume: Express.Multer.File) => {
-  const { jobId, applicantName, applicantEmail, coverLetter } = payload;
-  const storageUrl = `/uploads/${resume.filename}`;
+const createApplication = async (payload: TApplication) => {
+  const { jobId, applicantName, applicantEmail, coverLetter, resumeLink } = payload;
 
   const application = await prisma.application.create({
     data: {
       jobId,
       applicantName,
       applicantEmail,
-      resumeLink: storageUrl,
+      resumeLink: resumeLink ?? null,
       coverLetter: coverLetter || null,
     },
   });
@@ -33,7 +32,7 @@ const getAllApplications = async (payload: { search: string }) => {
         {
           applicantName: {
             contains: payload.search,
-            mode: "insensitive", // TS now knows this is QueryMode
+            mode: "insensitive",
           },
         },
         {

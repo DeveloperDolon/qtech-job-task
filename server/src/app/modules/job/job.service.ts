@@ -1,9 +1,18 @@
+import { uploadToCloudinary } from "#app/utils/cloudinary.js";
 import prisma from "#config/prisma.js";
 import type { TJob } from "./job.interface.js";
 
+
 const createJob = async (data: TJob, uploadedFile: Express.Multer.File) => {
   const { title, description, company, category, location, jobType, tags, vacancy, workingTime, salary } = data;
-  const storageUrl = `/uploads/${uploadedFile.filename}`;
+
+  let logoUrl = "";
+
+  if (uploadedFile) {
+    const uploadResult = await uploadToCloudinary(uploadedFile);
+    logoUrl = uploadResult.secure_url;
+  }
+
   const job = await prisma.job.create({
     data: {
       title,
@@ -16,9 +25,10 @@ const createJob = async (data: TJob, uploadedFile: Express.Multer.File) => {
       workingTime,
       salary,
       category,
-      logo: storageUrl,
+      logo: logoUrl, // Now saving the Cloudinary URL (https://...)
     },
   });
+
   return job;
 };
 

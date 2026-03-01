@@ -3,7 +3,7 @@ export type TApplication = {
     jobId: string;
     applicantName: string;
     applicantEmail: string;
-    resume?: File;
+    resumeLink: string;
     coverLetter?: string;
     status?: "PENDING" | "ACCEPTED" | "REJECTED";
 }
