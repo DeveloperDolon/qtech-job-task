@@ -11,7 +11,7 @@ const MainLayout = () => {
       </header>
 
       {/* Main Content */}
-      <div className="bg-white max-w-[1500px] mx-auto min-h-[60vh]">
+      <div className="bg-white min-h-[60vh]">
         <Outlet />
       </div>
 
