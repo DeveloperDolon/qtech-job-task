@@ -7,8 +7,20 @@ import { JobValidation } from "./job.validation.js";
 
 const router = express.Router();
 
-router.post("/", authGuard(), validateRequest(JobValidation.jobSchema), uploadMiddleware.single("file"), JobController.createJob);
-
+router.post(
+  "/",
+  authGuard(),
+  uploadMiddleware.single("logo"), // ✅ parse multipart first
+  (req, res, next) => {
+    console.log("--- DEBUG START ---");
+    console.log("File:", req.file);
+    console.log("Body:", req.body);
+    console.log("--- DEBUG END ---");
+    next();
+  },
+  validateRequest(JobValidation.jobSchema), // ✅ now body exists
+  JobController.createJob,
+);
 router.delete("/:id", authGuard(), JobController.deleteJob);
 
 router.get("/", JobController.getAllJobs);

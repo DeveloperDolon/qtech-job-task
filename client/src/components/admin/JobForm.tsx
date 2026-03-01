@@ -33,7 +33,8 @@ const JobForm: React.FC<JobFormProps> = ({ onSuccess, onCancel }) => {
     if (!form.description.trim()) errs.description = "Description is required";
     if (!form.company.trim()) errs.company = "Company is required";
     if (!form.location.trim()) errs.location = "Location is required";
-    if (!form.salary || isNaN(Number(form.salary)) || Number(form.salary) <= 0) errs.salary = "Valid salary is required";
+    if (!form.salary || isNaN(Number(form.salary)) || Number(form.salary) <= 0)
+      errs.salary = "Valid salary is required";
     if (!form.workingTime.trim()) errs.workingTime = "Working time is required";
     if (!form.tags.trim()) errs.tags = "At least one tag is required";
     return errs;
@@ -48,25 +49,37 @@ const JobForm: React.FC<JobFormProps> = ({ onSuccess, onCancel }) => {
     }
 
     const formData = new FormData();
-    Object.entries(form).forEach(([key, value]) => {
-      if (key === "tags") {
-        const tagArr = value.split(",").map((t) => t.trim()).filter(Boolean);
-        tagArr.forEach((tag) => formData.append("tags[]", tag));
-      } else if (key === "salary") {
-        formData.append(key, String(Number(value)));
-      } else if (key === "vacancy") {
-        formData.append(key, String(Number(value)));
-      } else {
-        formData.append(key, value);
-      }
-    });
-    if (logoFile) formData.append("logo", logoFile);
+
+    // 1. Append simple fields
+    formData.append("title", form.title);
+    formData.append("description", form.description);
+    formData.append("company", form.company);
+    formData.append("location", form.location);
+    formData.append("salary", form.salary); // Backend should use z.coerce.number()
+    formData.append("vacancy", form.vacancy);
+    formData.append("jobType", form.jobType);
+    formData.append("category", form.category);
+    formData.append("workingTime", form.workingTime);
+
+    // 2. Fix Tags: Most multipart parsers prefer the key repeated WITHOUT brackets
+    const tagArr = form.tags
+      .split(",")
+      .map((t) => t.trim())
+      .filter(Boolean);
+    tagArr.forEach((tag) => formData.append("tags", tag));
+
+    // 3. Append File
+    if (logoFile) {
+      formData.append("logo", logoFile);
+    }
 
     try {
+      // Ensure your RTK Query mutation is set up to handle FormData
       await createJob(formData).unwrap();
       onSuccess?.();
     } catch (err: any) {
-      setErrors({ submit: err?.data?.message || "Failed to create job. Please try again." });
+      // If you see the Zod error here, it's definitely the backend middleware
+      setErrors({ submit: err?.data?.message || "Failed to create job." });
     }
   };
 
@@ -83,91 +96,134 @@ const JobForm: React.FC<JobFormProps> = ({ onSuccess, onCancel }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Job Title *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Job Title *
+          </label>
           <input
             type="text"
             value={form.title}
-            onChange={(e) => { setForm({ ...form, title: e.target.value }); setErrors({ ...errors, title: "" }); }}
+            onChange={(e) => {
+              setForm({ ...form, title: e.target.value });
+              setErrors({ ...errors, title: "" });
+            }}
             placeholder="e.g. Senior Frontend Developer"
             className={inputClass("title")}
           />
-          {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title}</p>}
+          {errors.title && (
+            <p className="text-red-500 text-xs mt-1">{errors.title}</p>
+          )}
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Company *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Company *
+          </label>
           <input
             type="text"
             value={form.company}
-            onChange={(e) => { setForm({ ...form, company: e.target.value }); setErrors({ ...errors, company: "" }); }}
+            onChange={(e) => {
+              setForm({ ...form, company: e.target.value });
+              setErrors({ ...errors, company: "" });
+            }}
             placeholder="Company name"
             className={inputClass("company")}
           />
-          {errors.company && <p className="text-red-500 text-xs mt-1">{errors.company}</p>}
+          {errors.company && (
+            <p className="text-red-500 text-xs mt-1">{errors.company}</p>
+          )}
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-brand-dark mb-1.5">Description *</label>
+        <label className="block text-xs font-medium text-brand-dark mb-1.5">
+          Description *
+        </label>
         <textarea
           value={form.description}
-          onChange={(e) => { setForm({ ...form, description: e.target.value }); setErrors({ ...errors, description: "" }); }}
+          onChange={(e) => {
+            setForm({ ...form, description: e.target.value });
+            setErrors({ ...errors, description: "" });
+          }}
           placeholder="Job description..."
           rows={4}
           className={`${inputClass("description")} resize-none`}
         />
-        {errors.description && <p className="text-red-500 text-xs mt-1">{errors.description}</p>}
+        {errors.description && (
+          <p className="text-red-500 text-xs mt-1">{errors.description}</p>
+        )}
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Location *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Location *
+          </label>
           <input
             type="text"
             value={form.location}
-            onChange={(e) => { setForm({ ...form, location: e.target.value }); setErrors({ ...errors, location: "" }); }}
+            onChange={(e) => {
+              setForm({ ...form, location: e.target.value });
+              setErrors({ ...errors, location: "" });
+            }}
             placeholder="e.g. New York, USA"
             className={inputClass("location")}
           />
-          {errors.location && <p className="text-red-500 text-xs mt-1">{errors.location}</p>}
+          {errors.location && (
+            <p className="text-red-500 text-xs mt-1">{errors.location}</p>
+          )}
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Annual Salary ($) *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Annual Salary ($) *
+          </label>
           <input
             type="number"
             value={form.salary}
-            onChange={(e) => { setForm({ ...form, salary: e.target.value }); setErrors({ ...errors, salary: "" }); }}
+            onChange={(e) => {
+              setForm({ ...form, salary: e.target.value });
+              setErrors({ ...errors, salary: "" });
+            }}
             placeholder="e.g. 80000"
             className={inputClass("salary")}
           />
-          {errors.salary && <p className="text-red-500 text-xs mt-1">{errors.salary}</p>}
+          {errors.salary && (
+            <p className="text-red-500 text-xs mt-1">{errors.salary}</p>
+          )}
         </div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Job Type *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Job Type *
+          </label>
           <select
             value={form.jobType}
             onChange={(e) => setForm({ ...form, jobType: e.target.value })}
             className={inputClass("jobType")}
           >
             {jobTypeOptions.map((opt) => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
             ))}
           </select>
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Category *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Category *
+          </label>
           <select
             value={form.category}
             onChange={(e) => setForm({ ...form, category: e.target.value })}
             className={inputClass("category")}
           >
             {categoryOptions.map((opt) => (
-              <option key={opt.value} value={opt.value}>{opt.label}</option>
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
             ))}
           </select>
         </div>
@@ -175,7 +231,9 @@ const JobForm: React.FC<JobFormProps> = ({ onSuccess, onCancel }) => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Vacancy *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Vacancy *
+          </label>
           <input
             type="number"
             value={form.vacancy}
@@ -186,32 +244,48 @@ const JobForm: React.FC<JobFormProps> = ({ onSuccess, onCancel }) => {
         </div>
 
         <div>
-          <label className="block text-xs font-medium text-brand-dark mb-1.5">Working Time *</label>
+          <label className="block text-xs font-medium text-brand-dark mb-1.5">
+            Working Time *
+          </label>
           <input
             type="text"
             value={form.workingTime}
-            onChange={(e) => { setForm({ ...form, workingTime: e.target.value }); setErrors({ ...errors, workingTime: "" }); }}
+            onChange={(e) => {
+              setForm({ ...form, workingTime: e.target.value });
+              setErrors({ ...errors, workingTime: "" });
+            }}
             placeholder="e.g. 9 AM - 5 PM"
             className={inputClass("workingTime")}
           />
-          {errors.workingTime && <p className="text-red-500 text-xs mt-1">{errors.workingTime}</p>}
+          {errors.workingTime && (
+            <p className="text-red-500 text-xs mt-1">{errors.workingTime}</p>
+          )}
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-brand-dark mb-1.5">Tags (comma-separated) *</label>
+        <label className="block text-xs font-medium text-brand-dark mb-1.5">
+          Tags (comma-separated) *
+        </label>
         <input
           type="text"
           value={form.tags}
-          onChange={(e) => { setForm({ ...form, tags: e.target.value }); setErrors({ ...errors, tags: "" }); }}
+          onChange={(e) => {
+            setForm({ ...form, tags: e.target.value });
+            setErrors({ ...errors, tags: "" });
+          }}
           placeholder="e.g. React, TypeScript, Remote"
           className={inputClass("tags")}
         />
-        {errors.tags && <p className="text-red-500 text-xs mt-1">{errors.tags}</p>}
+        {errors.tags && (
+          <p className="text-red-500 text-xs mt-1">{errors.tags}</p>
+        )}
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-brand-dark mb-1.5">Company Logo</label>
+        <label className="block text-xs font-medium text-brand-dark mb-1.5">
+          Company Logo
+        </label>
         <div className="border border-dashed border-brand-lightgray rounded-lg px-4 py-3 hover:border-primary transition-colors">
           <input
             type="file"
@@ -220,14 +294,23 @@ const JobForm: React.FC<JobFormProps> = ({ onSuccess, onCancel }) => {
             onChange={(e) => setLogoFile(e.target.files?.[0] || null)}
             className="hidden"
           />
-          <label htmlFor="logo" className="cursor-pointer flex items-center gap-3">
+          <label
+            htmlFor="logo"
+            className="cursor-pointer flex items-center gap-3"
+          >
             {logoFile ? (
               <>
-                <img src={URL.createObjectURL(logoFile)} alt="preview" className="w-10 h-10 rounded object-cover" />
+                <img
+                  src={URL.createObjectURL(logoFile)}
+                  alt="preview"
+                  className="w-10 h-10 rounded object-cover"
+                />
                 <span className="text-sm text-brand-dark">{logoFile.name}</span>
               </>
             ) : (
-              <span className="text-sm text-brand-gray">Click to upload company logo</span>
+              <span className="text-sm text-brand-gray">
+                Click to upload company logo
+              </span>
             )}
           </label>
         </div>
