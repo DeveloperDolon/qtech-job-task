@@ -5,6 +5,7 @@ import { PageLoader } from "../components/shared";
 
 const AdminLoginPage = lazy(() => import("../pages/AdminLoginPage"));
 const HomePage = lazy(() => import("../pages/HomePage"));
+const AdminPage = lazy(() => import("../pages/AdminPage"));
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<PageLoader />}>
             <AdminLoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/admin",
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <AdminPage />
           </Suspense>
         ),
       },
