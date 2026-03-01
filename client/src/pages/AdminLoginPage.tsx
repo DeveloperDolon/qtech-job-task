@@ -12,7 +12,7 @@ const AdminLoginPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useAdminLoginMutation();
-
+  
   const validate = () => {
     const errs: Record<string, string> = {};
     if (!form.email.trim()) errs.email = "Email is required";
@@ -24,15 +24,18 @@ const AdminLoginPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
+    console.log("Validation Errors:", errs);
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
     try {
       const result = await login(form).unwrap();
-      dispatch(setCredentials({ token: result.data.token }));
+
+      dispatch(setCredentials({ token: result.data.accessToken }));
       navigate("/admin");
     } catch (err: any) {
+        console.log(err)
       setErrors({
         submit: err?.data?.message || "Invalid credentials. Please try again.",
       });
