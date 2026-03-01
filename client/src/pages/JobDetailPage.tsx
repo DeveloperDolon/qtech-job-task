@@ -52,7 +52,7 @@ console.log("Fetched Job Data:", job);
               <div className="flex items-start gap-4 mb-6">
                 {job.logo ? (
                   <img
-                    src={`http://localhost:5000${job.logo}`}
+                    src={`${job.logo}`}
                     alt={job.company}
                     className="w-16 h-16 rounded-xl object-cover border border-gray-100"
                   />

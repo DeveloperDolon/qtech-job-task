@@ -26,13 +26,13 @@ export interface Job {
 }
 
 export interface Application {
-  id: string;
+  id?: string;
   jobId: string;
   applicantName: string;
   applicantEmail: string;
   resume?: string;
   coverLetter?: string;
-  createdAt: string;
+  createdAt?: string;
 }
 
 export interface ApiResponse<T> {

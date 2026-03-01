@@ -221,7 +221,7 @@ const AdminPage: React.FC = () => {
                           <div className="flex items-center gap-3">
                             {job.logo ? (
                               <img
-                                src={`http://localhost:5000${job.logo}`}
+                                src={`${job.logo}`}
                                 alt={job.company}
                                 className="w-9 h-9 rounded-lg object-cover border border-gray-100"
                               />
@@ -350,12 +350,12 @@ const AdminPage: React.FC = () => {
                         </td>
                         <td className="px-4 py-4 hidden sm:table-cell">
                           <span className="text-xs text-brand-gray">
-                            {formatDate(app.createdAt)}
+                            {formatDate(app.createdAt as string)}
                           </span>
                         </td>
                         <td className="px-6 py-4">
                           <button
-                            onClick={() => setDeleteAppId(app.id)}
+                            onClick={() => setDeleteAppId(app.id as string)}
                             className="text-xs text-red-500 hover:underline font-medium"
                           >
                             Delete

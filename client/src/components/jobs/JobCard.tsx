@@ -20,7 +20,7 @@ const JobCard: React.FC<JobCardProps> = ({ job }) => {
         <div className="flex items-center gap-3">
           {job.logo ? (
             <img
-              src={`http://localhost:5000${job.logo}`}
+              src={`${job.logo}`}
               alt={job.company}
               className="w-12 h-12 rounded-xl object-cover border border-gray-100"
             />

@@ -4,11 +4,11 @@ import { baseApi } from "../api/baseApi";
 export const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     // Applications
-    createApplication: builder.mutation<ApiResponse<Application>, FormData>({
-      query: (formData) => ({
+    createApplication: builder.mutation<ApiResponse<Application>, Application>({
+      query: (payload) => ({
         url: "/applications",
         method: "POST",
-        body: formData,
+        body: payload,
       }),
       invalidatesTags: ["Applications"],
     }),
