@@ -1,12 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "../components/layout/MainLayout";
 
 export const router = createBrowserRouter([
-  // 🌍 Public Routes
   {
-    element: <PublicLayout />,
-    children: [
-      { path: "/", element: <Home /> },
-      { path: "/property/:id", element: <PropertyDetails /> },
-    ],
+    element: <MainLayout />,
+    children: [],
   },
 ]);
