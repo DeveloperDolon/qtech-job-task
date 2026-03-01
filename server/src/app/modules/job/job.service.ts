@@ -29,7 +29,29 @@ const deleteJob = async (id: string) => {
   return job;
 };
 
+const getAllJobs = async (filtering: { search: string; category?: string; jobType?: string }) => {
+  const { search, category, jobType } = filtering;
+  const where: any = {};
+  if (search) {
+    where.title = {
+      contains: search,
+      mode: "insensitive",
+    };
+  }
+  if (category) {
+    where.category = category;
+  }
+  if (jobType) {
+    where.jobType = jobType;
+  }
+  const jobs = await prisma.job.findMany({
+    where,
+  });
+  return jobs;
+};
+
 export const JobService = {
   createJob,
   deleteJob,
+  getAllJobs,
 };

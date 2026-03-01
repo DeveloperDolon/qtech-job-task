@@ -11,4 +11,6 @@ router.post("/", authGuard(), validateRequest(JobValidation.jobSchema), uploadMi
 
 router.delete("/:id", authGuard(), JobController.deleteJob);
 
+router.get("/", JobController.getAllJobs);
+
 export const JobRoutes = router;
