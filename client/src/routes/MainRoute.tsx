@@ -4,6 +4,11 @@ import MainLayout from "../components/layout/MainLayout";
 export const router = createBrowserRouter([
   {
     element: <MainLayout />,
-    children: [],
+    children: [
+      {
+        "path": "/",
+        "element": <div className="text-2xl font-semibold">Home</div>
+      }
+    ],
   },
 ]);
