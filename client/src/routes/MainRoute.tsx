@@ -4,6 +4,7 @@ import { lazy, Suspense } from "react";
 import { PageLoader } from "../components/shared";
 
 const AdminLoginPage = lazy(() => import("../pages/AdminLoginPage"));
+const HomePage = lazy(() => import("../pages/HomePage"));
 
 export const router = createBrowserRouter([
   {
@@ -11,7 +12,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div className="text-2xl font-semibold">Home</div>,
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <HomePage />
+          </Suspense>
+        ),
       },
       {
         path: "/admin/login",
