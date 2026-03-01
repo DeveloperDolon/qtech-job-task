@@ -19,10 +19,7 @@ const {
   skip,
   Decimal,
   Debug,
-  DbNull,
-  JsonNull,
-  AnyNull,
-  NullTypes,
+  objectEnumValues,
   makeStrictEnum,
   Extensions,
   warnOnce,
@@ -30,7 +27,7 @@ const {
   Public,
   getRuntime,
   createParam,
-} = require('./runtime/wasm-compiler-edge.js')
+} = require('./runtime/edge.js')
 
 
 const Prisma = {}
@@ -39,12 +36,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 7.4.1
- * Query Engine version: 55ae170b1ced7fc6ed07a15f110549408c501bb3
+ * Prisma Client JS version: 6.19.2
+ * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
  */
 Prisma.prismaVersion = {
-  client: "7.4.1",
-  engine: "55ae170b1ced7fc6ed07a15f110549408c501bb3"
+  client: "6.19.2",
+  engine: "c2990dca591cba766e3b7ef5d9e8a84796e47ab7"
 }
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
@@ -72,11 +69,15 @@ Prisma.defineExtension = Extensions.defineExtension
 /**
  * Shorthand utilities for JSON filtering
  */
-Prisma.DbNull = DbNull
-Prisma.JsonNull = JsonNull
-Prisma.AnyNull = AnyNull
+Prisma.DbNull = objectEnumValues.instances.DbNull
+Prisma.JsonNull = objectEnumValues.instances.JsonNull
+Prisma.AnyNull = objectEnumValues.instances.AnyNull
 
-Prisma.NullTypes = NullTypes
+Prisma.NullTypes = {
+  DbNull: objectEnumValues.classes.DbNull,
+  JsonNull: objectEnumValues.classes.JsonNull,
+  AnyNull: objectEnumValues.classes.AnyNull
+}
 
 
 
@@ -175,32 +176,74 @@ exports.Prisma.ModelName = {
  * Create the Client
  */
 const config = {
-  "previewFeatures": [],
-  "clientVersion": "7.4.1",
-  "engineVersion": "55ae170b1ced7fc6ed07a15f110549408c501bb3",
-  "activeProvider": "postgresql",
-  "inlineSchema": "generator client {\n  provider     = \"prisma-client-js\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"esm\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  name      String?\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Job {\n  id           String        @id @default(uuid())\n  title        String\n  description  String\n  company      String\n  location     String\n  logo         String\n  jobType      JobType\n  tags         String[]\n  vacancy      Int\n  workingTime  String\n  createdAt    DateTime      @default(now())\n  updatedAt    DateTime      @updatedAt\n  salary       Float\n  category     JobCategory\n  applications Application[]\n}\n\nmodel Application {\n  id             String            @id @default(uuid())\n  jobId          String\n  createdAt      DateTime          @default(now())\n  updatedAt      DateTime          @updatedAt\n  applicantEmail String\n  applicantName  String\n  coverLetter    String?\n  resumeLink     String\n  status         ApplicationStatus @default(PENDING)\n  job            Job               @relation(fields: [jobId], references: [id])\n}\n\nenum ApplicationStatus {\n  PENDING\n  ACCEPTED\n  REJECTED\n}\n\nenum JobCategory {\n  SOFTWARE_DEVELOPMENT\n  DESIGN\n  MARKETING\n  SALES\n  CUSTOMER_SUPPORT\n  HUMAN_RESOURCES\n}\n\nenum JobType {\n  FULL_TIME\n  PART_TIME\n  CONTRACT\n  INTERN\n}\n"
-}
-
-config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"name\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"password\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null},\"Job\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"title\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"description\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"company\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"location\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"logo\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"jobType\",\"kind\":\"enum\",\"type\":\"JobType\"},{\"name\":\"tags\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"vacancy\",\"kind\":\"scalar\",\"type\":\"Int\"},{\"name\":\"workingTime\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"salary\",\"kind\":\"scalar\",\"type\":\"Float\"},{\"name\":\"category\",\"kind\":\"enum\",\"type\":\"JobCategory\"},{\"name\":\"applications\",\"kind\":\"object\",\"type\":\"Application\",\"relationName\":\"ApplicationToJob\"}],\"dbName\":null},\"Application\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"jobId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"applicantEmail\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"applicantName\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"coverLetter\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"resumeLink\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"enum\",\"type\":\"ApplicationStatus\"},{\"name\":\"job\",\"kind\":\"object\",\"type\":\"Job\",\"relationName\":\"ApplicationToJob\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
-defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
-config.parameterizationSchema = {
-  strings: JSON.parse("[\"where\",\"User.findUnique\",\"User.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"User.findFirst\",\"User.findFirstOrThrow\",\"User.findMany\",\"data\",\"User.createOne\",\"User.createMany\",\"User.createManyAndReturn\",\"User.updateOne\",\"User.updateMany\",\"User.updateManyAndReturn\",\"create\",\"update\",\"User.upsertOne\",\"User.deleteOne\",\"User.deleteMany\",\"having\",\"_count\",\"_min\",\"_max\",\"User.groupBy\",\"User.aggregate\",\"job\",\"applications\",\"Job.findUnique\",\"Job.findUniqueOrThrow\",\"Job.findFirst\",\"Job.findFirstOrThrow\",\"Job.findMany\",\"Job.createOne\",\"Job.createMany\",\"Job.createManyAndReturn\",\"Job.updateOne\",\"Job.updateMany\",\"Job.updateManyAndReturn\",\"Job.upsertOne\",\"Job.deleteOne\",\"Job.deleteMany\",\"_avg\",\"_sum\",\"Job.groupBy\",\"Job.aggregate\",\"Application.findUnique\",\"Application.findUniqueOrThrow\",\"Application.findFirst\",\"Application.findFirstOrThrow\",\"Application.findMany\",\"Application.createOne\",\"Application.createMany\",\"Application.createManyAndReturn\",\"Application.updateOne\",\"Application.updateMany\",\"Application.updateManyAndReturn\",\"Application.upsertOne\",\"Application.deleteOne\",\"Application.deleteMany\",\"Application.groupBy\",\"Application.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"jobId\",\"createdAt\",\"updatedAt\",\"applicantEmail\",\"applicantName\",\"coverLetter\",\"resumeLink\",\"ApplicationStatus\",\"status\",\"equals\",\"in\",\"notIn\",\"not\",\"lt\",\"lte\",\"gt\",\"gte\",\"contains\",\"startsWith\",\"endsWith\",\"title\",\"description\",\"company\",\"location\",\"logo\",\"JobType\",\"jobType\",\"tags\",\"vacancy\",\"workingTime\",\"salary\",\"JobCategory\",\"category\",\"has\",\"hasEvery\",\"hasSome\",\"every\",\"some\",\"none\",\"email\",\"name\",\"password\",\"is\",\"isNot\",\"connectOrCreate\",\"upsert\",\"createMany\",\"set\",\"disconnect\",\"delete\",\"connect\",\"updateMany\",\"deleteMany\",\"increment\",\"decrement\",\"multiply\",\"divide\",\"push\"]"),
-  graph: "pQEcMAk-AAB3ADA_AAAEABBAAAB3ADBBAQAAAAFDQABuACFEQABuACFpAQAAAAFqAQBzACFrAQBrACEBAAAAAQAgAQAAAAEAIAk-AAB3ADA_AAAEABBAAAB3ADBBAQBrACFDQABuACFEQABuACFpAQBrACFqAQBzACFrAQBrACEBagAAeAAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACADAAAABAAgAwAABQAwBAAAAQAgBkEBAAAAAUNAAAAAAURAAAAAAWkBAAAAAWoBAAAAAWsBAAAAAQEIAAAJACAGQQEAAAABQ0AAAAABREAAAAABaQEAAAABagEAAAABawEAAAABAQgAAAsAMAEIAAALADAGQQEAfAAhQ0AAfQAhREAAfQAhaQEAfAAhagEAfgAhawEAfAAhAgAAAAEAIAgAAA4AIAZBAQB8ACFDQAB9ACFEQAB9ACFpAQB8ACFqAQB-ACFrAQB8ACECAAAABAAgCAAAEAAgAgAAAAQAIAgAABAAIAMAAAABACAPAAAJACAQAAAOACABAAAAAQAgAQAAAAQAIAQVAACdAQAgFgAAnwEAIBcAAJ4BACBqAAB4ACAJPgAAdgAwPwAAFwAQQAAAdgAwQQEATwAhQ0AAUAAhREAAUAAhaQEATwAhagEAUQAhawEATwAhAwAAAAQAIAMAABYAMBQAABcAIAMAAAAEACADAAAFADAEAAABACASGwAAcQAgPgAAagAwPwAAIgAQQAAAagAwQQEAAAABQ0AAbgAhREAAbgAhVgEAawAhVwEAawAhWAEAawAhWQEAawAhWgEAawAhXAAAbFwiXQAAXwAgXgIAbQAhXwEAawAhYAgAbwAhYgAAcGIiAQAAABoAIA0aAAB1ACA-AAByADA_AAAcABBAAAByADBBAQBrACFCAQBrACFDQABuACFEQABuACFFAQBrACFGAQBrACFHAQBzACFIAQBrACFKAAB0SiICGgAAnAEAIEcAAHgAIA0aAAB1ACA-AAByADA_AAAcABBAAAByADBBAQAAAAFCAQBrACFDQABuACFEQABuACFFAQBrACFGAQBrACFHAQBzACFIAQBrACFKAAB0SiIDAAAAHAAgAwAAHQAwBAAAHgAgAQAAABwAIAEAAAAaACASGwAAcQAgPgAAagAwPwAAIgAQQAAAagAwQQEAawAhQ0AAbgAhREAAbgAhVgEAawAhVwEAawAhWAEAawAhWQEAawAhWgEAawAhXAAAbFwiXQAAXwAgXgIAbQAhXwEAawAhYAgAbwAhYgAAcGIiARsAAJsBACADAAAAIgAgAwAAIwAwBAAAGgAgAwAAACIAIAMAACMAMAQAABoAIAMAAAAiACADAAAjADAEAAAaACAPGwAAmgEAIEEBAAAAAUNAAAAAAURAAAAAAVYBAAAAAVcBAAAAAVgBAAAAAVkBAAAAAVoBAAAAAVwAAABcAl0AAJkBACBeAgAAAAFfAQAAAAFgCAAAAAFiAAAAYgIBCAAAJwAgDkEBAAAAAUNAAAAAAURAAAAAAVYBAAAAAVcBAAAAAVgBAAAAAVkBAAAAAVoBAAAAAVwAAABcAl0AAJkBACBeAgAAAAFfAQAAAAFgCAAAAAFiAAAAYgIBCAAAKQAwAQgAACkAMA8bAACMAQAgQQEAfAAhQ0AAfQAhREAAfQAhVgEAfAAhVwEAfAAhWAEAfAAhWQEAfAAhWgEAfAAhXAAAhwFcIl0AAIgBACBeAgCJAQAhXwEAfAAhYAgAigEAIWIAAIsBYiICAAAAGgAgCAAALAAgDkEBAHwAIUNAAH0AIURAAH0AIVYBAHwAIVcBAHwAIVgBAHwAIVkBAHwAIVoBAHwAIVwAAIcBXCJdAACIAQAgXgIAiQEAIV8BAHwAIWAIAIoBACFiAACLAWIiAgAAACIAIAgAAC4AIAIAAAAiACAIAAAuACADAAAAGgAgDwAAJwAgEAAALAAgAQAAABoAIAEAAAAiACAFFQAAggEAIBYAAIUBACAXAACEAQAgKgAAgwEAICsAAIYBACARPgAAXQAwPwAANQAQQAAAXQAwQQEATwAhQ0AAUAAhREAAUAAhVgEATwAhVwEATwAhWAEATwAhWQEATwAhWgEATwAhXAAAXlwiXQAAXwAgXgIAYAAhXwEATwAhYAgAYQAhYgAAYmIiAwAAACIAIAMAADQAMBQAADUAIAMAAAAiACADAAAjADAEAAAaACABAAAAHgAgAQAAAB4AIAMAAAAcACADAAAdADAEAAAeACADAAAAHAAgAwAAHQAwBAAAHgAgAwAAABwAIAMAAB0AMAQAAB4AIAoaAACBAQAgQQEAAAABQgEAAAABQ0AAAAABREAAAAABRQEAAAABRgEAAAABRwEAAAABSAEAAAABSgAAAEoCAQgAAD0AIAlBAQAAAAFCAQAAAAFDQAAAAAFEQAAAAAFFAQAAAAFGAQAAAAFHAQAAAAFIAQAAAAFKAAAASgIBCAAAPwAwAQgAAD8AMAoaAACAAQAgQQEAfAAhQgEAfAAhQ0AAfQAhREAAfQAhRQEAfAAhRgEAfAAhRwEAfgAhSAEAfAAhSgAAf0oiAgAAAB4AIAgAAEIAIAlBAQB8ACFCAQB8ACFDQAB9ACFEQAB9ACFFAQB8ACFGAQB8ACFHAQB-ACFIAQB8ACFKAAB_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-AAB3ADA_AAAEABBAAAB3ADBBAQBrACFDQABuACFEQABuACFpAQBrACFqAQBzACFrAQBrACEAAAAAAXEBAAAAAQFxQAAAAAEBcQEAAAABAXEAAABKAgUPAAChAQAgEAAApAEAIG4AAKIBACBvAACjAQAgdAAAGgAgAw8AAKEBACBuAACiAQAgdAAAGgAgAAAAAAABcQAAAFwCAnEBAAAABHsBAAAABQVxAgAAAAF3AgAAAAF4AgAAAAF5AgAAAAF6AgAAAAEFcQgAAAABdwgAAAABeAgAAAABeQgAAAABeggAAAABAXEAAABiAgsPAACNAQAwEAAAkgEAMG4AAI4BADBvAACPAQAwcAAAkAEAIHEAAJEBADByAACRAQAwcwAAkQEAMHQAAJEBADB1AACTAQAwdgAAlAEAMAhBAQAAAAFDQAAAAAFEQAAAAAFFAQAAAAFGAQAAAAFHAQAAAAFIAQAAAAFKAAAASgICAAAAHgAgDwAAmAEAIAMAAAAeACAPAACYAQAgEAAAlwEAIAEIAACgAQAwDRoAAHUAID4AAHIAMD8AABwAEEAAAHIAMEEBAAAAAUIBAGsAIUNAAG4AIURAAG4AIUUBAGsAIUYBAGsAIUcBAHMAIUgBAGsAIUoAAHRKIgIAAAAeACAIAACXAQAgAgAAAJUBACAIAACWAQAgDD4AAJQBADA_AACVAQAQQAAAlAEAMEEBAGsAIUIBAGsAIUNAAG4AIURAAG4AIUUBAGsAIUYBAGsAIUcBAHMAIUgBAGsAIUoAAHRKIgw-AACUAQAwPwAAlQEAEEAAAJQBADBBAQBrACFCAQBrACFDQABuACFEQABuACFFAQBrACFGAQBrACFHAQBzACFIAQBrACFKAAB0SiIIQQEAfAAhQ0AAfQAhREAAfQAhRQEAfAAhRgEAfAAhRwEAfgAhSAEAfAAhSgAAf0oiCEEBAHwAIUNAAH0AIURAAH0AIUUBAHwAIUYBAHwAIUcBAH4AIUgBAHwAIUoAAH9KIghBAQAAAAFDQAAAAAFEQAAAAAFFAQAAAAFGAQAAAAFHAQAAAAFIAQAAAAFKAAAASgIBcQEAAAAEBA8AAI0BADBuAACOAQAwcAAAkAEAIHQAAJEBADAAARsAAJsBACAAAAAIQQEAAAABQ0AAAAABREAAAAABRQEAAAABRgEAAAABRwEAAAABSAEAAAABSgAAAEoCDkEBAAAAAUNAAAAAAURAAAAAAVYBAAAAAVcBAAAAAVgBAAAAAVkBAAAAAVoBAAAAAVwAAABcAl0AAJkBACBeAgAAAAFfAQAAAAFgCAAAAAFiAAAAYgICAAAAGgAgDwAAoQEAIAMAAAAiACAPAAChAQAgEAAApQEAIBAAAAAiACAIAAClAQAgQQEAfAAhQ0AAfQAhREAAfQAhVgEAfAAhVwEAfAAhWAEAfAAhWQEAfAAhWgEAfAAhXAAAhwFcIl0AAIgBACBeAgCJAQAhXwEAfAAhYAgAigEAIWIAAIsBYiIOQQEAfAAhQ0AAfQAhREAAfQAhVgEAfAAhVwEAfAAhWAEAfAAhWQEAfAAhWgEAfAAhXAAAhwFcIl0AAIgBACBeAgCJAQAhXwEAfAAhYAgAigEAIWIAAIsBYiIAAAAAAxUABhYABxcACAAAAAMVAAYWAAcXAAgCFQAMGx8LARoACgEbIAAAAAUVABAWABMXABQqABErABIAAAAAAAUVABAWABMXABQqABErABIBGgAKARoACgMVABkWABoXABsAAAADFQAZFgAaFwAbAQIBAgMBBQYBBgcBBwgBCQoBCgwCCw0DDA8BDRECDhIEERMBEhQBExUCGBgFGRkJHBsKHSEKHiQKHyUKICYKISgKIioCIysNJC0KJS8CJjAOJzEKKDIKKTMCLDYPLTcVLjgLLzkLMDoLMTsLMjwLMz4LNEACNUEWNkMLN0UCOEYXOUcLOkgLO0kCPEwYPU0c"
-}
-config.compilerWasm = {
-  getRuntime: async () => require('./query_compiler_fast_bg.js'),
-  getQueryCompilerWasmModule: async () => {
-    const loader = (await import('#wasm-compiler-loader')).default
-    const compiler = (await loader).default
-    return compiler
+  "generator": {
+    "name": "client",
+    "provider": {
+      "fromEnvVar": null,
+      "value": "prisma-client-js"
+    },
+    "output": {
+      "value": "/home/neu_matrics/Desktop/jobtask-projects/qtech-jobtask/server/src/generated/prisma",
+      "fromEnvVar": null
+    },
+    "config": {
+      "engineType": "library"
+    },
+    "binaryTargets": [
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x",
+        "native": true
+      }
+    ],
+    "previewFeatures": [
+      "driverAdapters"
+    ],
+    "sourceFilePath": "/home/neu_matrics/Desktop/jobtask-projects/qtech-jobtask/server/prisma/schema.prisma",
+    "isCustomOutput": true
   },
-  importName: './query_compiler_fast_bg.js',
+  "relativeEnvPaths": {
+    "rootEnvPath": "../../../.env",
+    "schemaEnvPath": "../../../.env"
+  },
+  "relativePath": "../../../prisma",
+  "clientVersion": "6.19.2",
+  "engineVersion": "c2990dca591cba766e3b7ef5d9e8a84796e47ab7",
+  "datasourceNames": [
+    "db"
+  ],
+  "activeProvider": "postgresql",
+  "postinstall": false,
+  "inlineDatasources": {
+    "db": {
+      "url": {
+        "fromEnvVar": "DATABASE_URL",
+        "value": null
+      }
+    }
+  },
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  previewFeatures = [\"driverAdapters\"]\n  output          = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id        String   @id @default(uuid())\n  email     String   @unique\n  name      String?\n  password  String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n}\n\nmodel Job {\n  id           String        @id @default(uuid())\n  title        String\n  description  String\n  company      String\n  location     String\n  logo         String\n  jobType      JobType\n  tags         String[]\n  vacancy      Int\n  workingTime  String\n  createdAt    DateTime      @default(now())\n  updatedAt    DateTime      @updatedAt\n  salary       Float\n  category     JobCategory\n  applications Application[]\n}\n\nmodel Application {\n  id             String            @id @default(uuid())\n  jobId          String\n  createdAt      DateTime          @default(now())\n  updatedAt      DateTime          @updatedAt\n  applicantEmail String\n  applicantName  String\n  coverLetter    String?\n  resumeLink     String\n  status         ApplicationStatus @default(PENDING)\n  job            Job               @relation(fields: [jobId], references: [id])\n}\n\nenum ApplicationStatus {\n  PENDING\n  ACCEPTED\n  REJECTED\n}\n\nenum JobCategory {\n  SOFTWARE_DEVELOPMENT\n  DESIGN\n  MARKETING\n  SALES\n  CUSTOMER_SUPPORT\n  HUMAN_RESOURCES\n}\n\nenum JobType {\n  FULL_TIME\n  PART_TIME\n  CONTRACT\n  INTERN\n}\n",
+  "inlineSchemaHash": "e149d1ff801c3bd8c8461b756b0736104bb775b08a3afa104b95838713829d1a",
+  "copyEngine": true
 }
-if (typeof globalThis !== 'undefined' && globalThis['DEBUG'] || (typeof process !== 'undefined' && process.env && process.env.DEBUG) || undefined) {
-  Debug.enable(typeof globalThis !== 'undefined' && globalThis['DEBUG'] || (typeof process !== 'undefined' && process.env && process.env.DEBUG) || undefined)
+config.dirname = '/'
+
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"uuid\",\"args\":[4]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"email\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":true,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"name\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"password\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Job\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"uuid\",\"args\":[4]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"title\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"description\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"company\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"location\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"logo\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jobType\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"JobType\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"tags\",\"kind\":\"scalar\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"vacancy\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Int\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"workingTime\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"salary\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Float\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"category\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"JobCategory\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"applications\",\"kind\":\"object\",\"isList\":true,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Application\",\"nativeType\":null,\"relationName\":\"ApplicationToJob\",\"relationFromFields\":[],\"relationToFields\":[],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false},\"Application\":{\"dbName\":null,\"schema\":null,\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":true,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"String\",\"nativeType\":null,\"default\":{\"name\":\"uuid\",\"args\":[4]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"jobId\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":true,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"DateTime\",\"nativeType\":null,\"default\":{\"name\":\"now\",\"args\":[]},\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"DateTime\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":true},{\"name\":\"applicantEmail\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"applicantName\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"coverLetter\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":false,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"resumeLink\",\"kind\":\"scalar\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"String\",\"nativeType\":null,\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"status\",\"kind\":\"enum\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":true,\"type\":\"ApplicationStatus\",\"nativeType\":null,\"default\":\"PENDING\",\"isGenerated\":false,\"isUpdatedAt\":false},{\"name\":\"job\",\"kind\":\"object\",\"isList\":false,\"isRequired\":true,\"isUnique\":false,\"isId\":false,\"isReadOnly\":false,\"hasDefaultValue\":false,\"type\":\"Job\",\"nativeType\":null,\"relationName\":\"ApplicationToJob\",\"relationFromFields\":[\"jobId\"],\"relationToFields\":[\"id\"],\"isGenerated\":false,\"isUpdatedAt\":false}],\"primaryKey\":null,\"uniqueFields\":[],\"uniqueIndexes\":[],\"isGenerated\":false}},\"enums\":{\"ApplicationStatus\":{\"values\":[{\"name\":\"PENDING\",\"dbName\":null},{\"name\":\"ACCEPTED\",\"dbName\":null},{\"name\":\"REJECTED\",\"dbName\":null}],\"dbName\":null},\"JobCategory\":{\"values\":[{\"name\":\"SOFTWARE_DEVELOPMENT\",\"dbName\":null},{\"name\":\"DESIGN\",\"dbName\":null},{\"name\":\"MARKETING\",\"dbName\":null},{\"name\":\"SALES\",\"dbName\":null},{\"name\":\"CUSTOMER_SUPPORT\",\"dbName\":null},{\"name\":\"HUMAN_RESOURCES\",\"dbName\":null}],\"dbName\":null},\"JobType\":{\"values\":[{\"name\":\"FULL_TIME\",\"dbName\":null},{\"name\":\"PART_TIME\",\"dbName\":null},{\"name\":\"CONTRACT\",\"dbName\":null},{\"name\":\"INTERN\",\"dbName\":null}],\"dbName\":null}},\"types\":{}}")
+defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
+config.engineWasm = undefined
+config.compilerWasm = undefined
+
+config.injectableEdgeEnv = () => ({
+  parsed: {
+    DATABASE_URL: typeof globalThis !== 'undefined' && globalThis['DATABASE_URL'] || typeof process !== 'undefined' && process.env && process.env.DATABASE_URL || undefined
+  }
+})
+
+if (typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined) {
+  Debug.enable(typeof globalThis !== 'undefined' && globalThis['DEBUG'] || typeof process !== 'undefined' && process.env && process.env.DEBUG || undefined)
 }
 
 const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
+
