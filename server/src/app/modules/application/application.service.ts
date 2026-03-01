@@ -1,5 +1,6 @@
 import type { TApplication } from "./application.interface.js";
 import prisma from "#config/prisma.js";
+import type { Prisma } from "#generated/prisma/index.js";
 
 const createApplication = async (payload: TApplication, resume: Express.Multer.File) => {
   const { jobId, applicantName, applicantEmail, coverLetter } = payload;
@@ -26,13 +27,27 @@ const getApplicationsByJobId = async (jobId: string) => {
 };
 
 const getAllApplications = async (payload: { search: string }) => {
-  const applications = await prisma.application.findMany({
-    where: {
+  const whereCondition: Prisma.ApplicationWhereInput = payload.search
+  ? {
       OR: [
-        { applicantName: { contains: payload.search, mode: "insensitive" } },
-        { applicantEmail: { contains: payload.search, mode: "insensitive" } },
+        {
+          applicantName: {
+            contains: payload.search,
+            mode: "insensitive", // TS now knows this is QueryMode
+          },
+        },
+        {
+          applicantEmail: {
+            contains: payload.search,
+            mode: "insensitive",
+          },
+        },
       ],
-    },
+    }
+  : {};
+
+  const applications = await prisma.application.findMany({
+    where: whereCondition,
   });
   return applications;
 };

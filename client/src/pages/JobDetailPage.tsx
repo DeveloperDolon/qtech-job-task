@@ -12,7 +12,7 @@ const JobDetailPage: React.FC = () => {
 
   const { data, isLoading, error } = useGetJobByIdQuery(id || "");
   const job = data?.data;
-
+console.log("Fetched Job Data:", job);
   if (isLoading) return <PageLoader />;
   if (error || !job) {
     return (

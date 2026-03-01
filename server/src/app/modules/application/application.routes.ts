@@ -8,7 +8,7 @@ import validateRequest from "#app/middlewares/validateRequest.js";
 import { ApplicationValidation } from "./application.validation.js";
 import authGuard from "#app/middlewares/authGuard.js";
 
-router.post("/", authGuard(),validateRequest(ApplicationValidation.applicationSchema), uploadMiddleware.single("file"), ApplicationController.createApplication);
+router.post("/", authGuard(), uploadMiddleware.single("resume"), validateRequest(ApplicationValidation.applicationSchema), ApplicationController.createApplication);
 router.get("/job/:jobId", authGuard(), ApplicationController.getApplicationsByJobId);
 router.get("/", authGuard(), ApplicationController.getAllApplications);
 router.delete("/:id", authGuard(), ApplicationController.deleteApplication);

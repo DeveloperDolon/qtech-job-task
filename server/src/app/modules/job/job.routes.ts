@@ -10,19 +10,14 @@ const router = express.Router();
 router.post(
   "/",
   authGuard(),
-  uploadMiddleware.single("logo"), // ✅ parse multipart first
-  (req, res, next) => {
-    console.log("--- DEBUG START ---");
-    console.log("File:", req.file);
-    console.log("Body:", req.body);
-    console.log("--- DEBUG END ---");
-    next();
-  },
-  validateRequest(JobValidation.jobSchema), // ✅ now body exists
+  uploadMiddleware.single("logo"), 
+  validateRequest(JobValidation.jobSchema),
   JobController.createJob,
 );
 router.delete("/:id", authGuard(), JobController.deleteJob);
 
 router.get("/", JobController.getAllJobs);
+
+router.get("/:id", JobController.getJobById);
 
 export const JobRoutes = router;

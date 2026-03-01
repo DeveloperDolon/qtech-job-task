@@ -50,8 +50,16 @@ const getAllJobs = async (filtering: { search: string; category?: string; jobTyp
   return jobs;
 };
 
+const getJobById = async (id: string) => {
+  const job = await prisma.job.findUnique({
+    where: { id },
+  });
+  return job;
+};
+
 export const JobService = {
   createJob,
   deleteJob,
   getAllJobs,
+  getJobById,
 };
