@@ -16,7 +16,7 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     origin: (origin, callback) => {
-      const allowedOrigins = ["http://localhost:5173", "http://localhost:3000", "http://localhost:3001"];
+      const allowedOrigins = ["http://localhost:5173", "http://localhost:3000", "http://localhost:3001", "https://qtech-client.vercel.app"];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
